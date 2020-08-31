@@ -49,7 +49,8 @@
     "use-debounce": "^3.1.0"
   },
   "scripts": {
-    "start": "yarn update-icons && yarn lingui:compile && craco start",
+    "start": "node server",
+    "start:dev": "yarn update-icons && yarn lingui:compile && craco start",
     "build": "yarn lingui:compile && craco build",
     "lint": "eslint --max-warnings=0 ./src",
     "prettier": "prettier --check ./src/**/*.js",
