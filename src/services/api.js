@@ -42,7 +42,7 @@ async function call(httpCall, mustBeAuthenticated) {
 
 export async function login(username, password) {
   const data = { username, password };
-  console.log('login data', login);
+  console.log('login data', data);
   return await call(async headers => await Axios.post(`${baseURL}/login`, data));
 }
 
