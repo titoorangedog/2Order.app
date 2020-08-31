@@ -1,6 +1,6 @@
 {
   "name": "2Order.app",
-  "proxy": "https://to-order.herokuapp.com/",
+  "proxy": "http://to-order.herokuapp.com/",
   "version": "0.1.0",
   "private": true,
   "engines": {
