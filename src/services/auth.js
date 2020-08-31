@@ -51,14 +51,14 @@ export async function authGetToken() {
   return await localforage.getItem('auth@token');
 }
 
-async function setSession(response) {
+export async function setSession(response) {
   const decoded = JwtDecode(response.token);
   console.log('response', response);
   await localforage.setItem('auth@token', response.token);
   await localforage.setItem('auth@expires_at', decoded.exp);
 }
 
-async function clearSession() {
+export async function clearSession() {
   await localforage.removeItem('auth@token');
   await localforage.removeItem('auth@expires_at');
 }
