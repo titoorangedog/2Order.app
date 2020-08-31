@@ -18,11 +18,11 @@ function* doLogin() {
   const password = yield select(selectPassword);
 
   try {
-    const result = yield call(login, username, password);
+    // const result = yield call(login, username, password);
 
-    console.log('doLogin result', result);
-    // yield call(authenticationLogin, username, password);
-    yield setSession(result);
+    // console.log('doLogin result', result);
+    yield call(authenticationLogin, username, password);
+    // yield setSession(result);
     yield put({
       type: AUTH_LOGIN_SUCCESS,
     });
