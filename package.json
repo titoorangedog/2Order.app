@@ -51,7 +51,8 @@
   "scripts": {
     "start": "node server",
     "start:dev": "yarn update-icons && yarn lingui:compile && craco start",
-    "build": "yarn lingui:compile && craco build",
+    "build:dev": "yarn lingui:compile && craco build",
+    "build": "yarn lingui:compile && react-scripts build",
     "lint": "eslint --max-warnings=0 ./src",
     "prettier": "prettier --check ./src/**/*.js",
     "format": "eslint --fix ./src && prettier --write ./src/**/*.js",
