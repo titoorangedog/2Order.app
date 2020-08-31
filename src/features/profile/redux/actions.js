@@ -1,0 +1,1 @@
+export { profileGetUserProfile } from './profileGetUserProfile';

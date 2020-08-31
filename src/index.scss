@@ -1,0 +1,25 @@
+@import '../node_modules/react-redux-toastr/src/styles/index';
+@import './styles/fonts.scss';
+@import './styles/resets.scss';
+
+body,
+html {
+  padding: 0;
+  margin: 0;
+  background-color: #fbfbfb;
+  font-family: 'Roboto', sans-serif;
+}
+#root {
+  overflow-x: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+.list-exit {
+  transform: translateX(0);
+}
+
+.list-exit.list-exit-active {
+  transform: translateX(100vw);
+  transition: transform 300ms ease-in;
+}

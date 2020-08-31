@@ -1,0 +1,306 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2019-10-04 10:01+0200\n"
+"Mime-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: en\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/features/auth/LoginSelectCustomer.js:107
+#: src/features/building/BuildingNew.js:326
+msgid "Abort"
+msgstr "Abort"
+
+#: src/features/building/BuildingNew.js:246
+msgid "Address"
+msgstr "Address"
+
+#: src/features/auth/redux/authSetTopbar.js:13
+#: src/features/auth/redux/authSetTopbar.js:13
+#~ msgid "Anmelden"
+#~ msgstr "Anmelden"
+
+#: src/features/shared/ErrorBoundary.js:26
+msgid "Back to home"
+msgstr "Back to home"
+
+#: src/common/messages.js:4
+#: src/common/messages.js:15
+msgid "Bad Request"
+msgstr "Bad Request"
+
+#: src/features/board/redux/boardSetTopbar.js:11
+#: src/features/board/redux/boardSetTopbar.js:11
+msgid "Board"
+msgstr "Board"
+
+#: src/features/building/BuildingNew.js:286
+msgid "Building Insurance"
+msgstr "Building Insurance"
+
+#: src/features/building/BuildingNew.js:212
+msgid "Building Properties"
+msgstr "Building Properties"
+
+#: src/features/buildingSearch/redux/buildingSearchSetTopbar.js:13
+#: src/features/buildingSearch/redux/buildingSearchSetTopbar.js:13
+msgid "Building search"
+msgstr "Building search"
+
+#: src/features/building/BuildingNew.js:279
+msgid "City"
+msgstr "City"
+
+#: src/features/building/buildingView/BuildingInspection.js:208
+#: src/features/building/redux/buildingSetTopbar.js:36
+#: src/features/building/redux/buildingSetTopbar.js:36
+msgid "Components"
+msgstr "Components"
+
+#: src/features/building/BuildingView.js:11
+msgid "Contacts"
+msgstr "Contacts"
+
+#: src/features/building/BuildingNew.js:322
+msgid "Create building"
+msgstr "Create building"
+
+#: src/features/auth/redux/authSetTopbar.js:13
+#: src/features/auth/redux/authSetTopbar.js:13
+#: src/features/profile/Profile.js:94
+msgid "Customer"
+msgstr "Customer"
+
+#: src/features/building/BuildingNew.js:225
+msgid "Designation"
+msgstr "Designation"
+
+#: src/features/building/buildingView/BuildingInspection.js:245
+msgid "Discard inspection"
+msgstr "Discard inspection"
+
+#: src/features/board/Board.js:68
+msgid "Do you want to create a new building (+) or do you want to search the existing buildings?"
+msgstr "Do you want to create a new building (+) or do you want to search the existing buildings?"
+
+#: src/features/building/BuildingNew.js:233
+msgid "EGID"
+msgstr "EGID"
+
+#: src/features/profile/Profile.js:84
+msgid "Email"
+msgstr "Email"
+
+#: src/features/auth/LoginSelectCustomer.js:87
+msgid "Environment"
+msgstr "Environment"
+
+#: src/common/messages.js:7
+#: src/common/messages.js:8
+msgid "Error"
+msgstr "Error"
+
+#: src/features/building/buildingView/buildingInspection/BuildingComponentsView.js:9
+msgid "Gallery"
+msgstr "Gallery"
+
+#: src/features/building/BuildingNew.js:257
+msgid "House number"
+msgstr "House number"
+
+#: src/features/building/buildingView/BuildingInspection.js:229
+msgid "Image gallery"
+msgstr "Image gallery"
+
+#: src/features/building/BuildingNew.js:289
+msgid "Index Year"
+msgstr "Index Year"
+
+#: src/features/building/BuildingView.js:11
+msgid "Inspection"
+msgstr "Inspection"
+
+#: src/features/building/buildingView/buildingInspection/BuildingComponentsView.js:9
+msgid "List"
+msgstr "List"
+
+#: src/features/buildingSearch/BuildingSearch.js:104
+msgid "Load more"
+msgstr "Load more"
+
+#: src/features/auth/LoginForm.js:122
+#: src/features/auth/redux/authSetTopbar.js:13
+#: src/features/auth/redux/authSetTopbar.js:13
+msgid "Login"
+msgstr "Login"
+
+#: src/features/profile/Profile.js:105
+msgid "Logout"
+msgstr "Logout"
+
+#: src/features/board/Board.js:66
+msgid "Make a choice"
+msgstr "Make a choice"
+
+#: src/features/profile/Profile.js:89
+msgid "Mobile"
+msgstr "Mobile"
+
+#: src/features/profile/Profile.js:74
+msgid "Name"
+msgstr "Name"
+
+#: src/index.js:23
+msgid "New Version"
+msgstr "New Version"
+
+#: src/features/building/redux/buildingSetTopbar.js:13
+#: src/features/building/redux/buildingSetTopbar.js:13
+msgid "New building"
+msgstr "New building"
+
+#: src/features/auth/LoginSelectCustomer.js:103
+msgid "Next"
+msgstr "Next"
+
+#: src/features/board/Board.js:115
+msgid "No menu loaded yet."
+msgstr "No menu loaded yet."
+
+#: src/common/selectField.js:83
+msgid "None"
+msgstr "None"
+
+#: src/common/messages.js:5
+msgid "Not Found"
+msgstr "Not Found"
+
+#: src/features/auth/Login.js:84
+#: src/features/auth/Login.js:85
+#: src/features/building/buildingView/BuildingInspection.js:157
+#: src/features/building/buildingView/BuildingInspection.js:158
+msgid "Not Implemented"
+msgstr "Not Implemented"
+
+#: src/common/inputPasswordField.js:96
+msgid "Password"
+msgstr "Password"
+
+#: src/features/building/buildingView/BuildingInspection.js:251
+msgid "Please create an inspection."
+msgstr "Please create an inspection."
+
+#: src/features/auth/LoginSelectCustomer.js:80
+msgid "Please select the desired environment."
+msgstr "Please select the desired environment."
+
+#: src/common/messages.js:3
+#: src/common/messages.js:14
+msgid "Please verify your username and password"
+msgstr "Please verify your username and password"
+
+#: src/features/profile/redux/profileSetTopbar.js:11
+#: src/features/profile/redux/profileSetTopbar.js:11
+msgid "Profile"
+msgstr "Profile"
+
+#: src/features/building/BuildingView.js:11
+msgid "Properties"
+msgstr "Properties"
+
+#: src/features/building/BuildingNew.js:215
+msgid "QC Capex Object Type"
+msgstr "QC Capex Object Type"
+
+#: src/features/building/buildingView/buildingInspection/BuildingComponentsTiles.js:97
+msgid "Reject"
+msgstr "Reject"
+
+#: src/features/building/buildingView/BuildingInspection.js:193
+#: src/features/profile/Profile.js:79
+msgid "Role"
+msgstr "Role"
+
+#: src/common/inputSearch.js:77
+msgid "Search"
+msgstr "Search"
+
+#: src/features/auth/LoginForm.js:126
+msgid "Sign Up"
+msgstr "Sign Up"
+
+#: src/features/shared/ErrorBoundary.js:23
+msgid "Something went wrong, please refresh."
+msgstr "Something went wrong, please refresh."
+
+#: src/common/buildingCard.js:154
+#~ msgid "State of the inspection"
+#~ msgstr "State of the inspection"
+
+#: src/features/building/BuildingNew.js:249
+msgid "Street"
+msgstr "Street"
+
+#: src/features/building/BuildingNew.js:265
+msgid "Street supplement"
+msgstr "Street supplement"
+
+#: src/common/messages.js:13
+msgid "There are no customers for your user"
+msgstr "There are no customers for your user"
+
+#: src/features/building/buildingView/buildingInspection/BuildingComponentsView.js:9
+msgid "Tiles"
+msgstr "Tiles"
+
+#: src/features/auth/LoginSelectCustomer.js:89
+#~ msgid "Umgebung"
+#~ msgstr "Umgebung"
+
+#: src/common/messages.js:6
+msgid "Unauthorized"
+msgstr "Unauthorized"
+
+#: src/features/building/buildingView/BuildingInspection.js:185
+msgid "User"
+msgstr "User"
+
+#: src/features/auth/LoginForm.js:102
+msgid "Username"
+msgstr "Username"
+
+#: src/features/building/BuildingNew.js:297
+msgid "Value"
+msgstr "Value"
+
+#: src/features/profile/Profile.js:109
+msgid "Version"
+msgstr "Version"
+
+#: src/features/building/BuildingNew.js:305
+msgid "Volume"
+msgstr "Volume"
+
+#: src/common/buildingCard.js:148
+#: src/features/building/BuildingNew.js:239
+msgid "Year of construction"
+msgstr "Year of construction"
+
+#: src/features/building/BuildingNew.js:271
+msgid "ZIP Code"
+msgstr "ZIP Code"
+
+#: src/common/buildingCard.js:157
+#~ msgid "none available"
+#~ msgstr "none available"
+
+#: src/features/building/buildingView/BuildingInspection.js:218
+msgid "{current} of {max} Components"
+msgstr "{current} of {max} Components"
