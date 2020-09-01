@@ -3,6 +3,9 @@
   "proxy": "https://to-order.herokuapp.com/",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "12.11.1"
+  },
   "dependencies": {
     "@craco/craco": "^5.6.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
