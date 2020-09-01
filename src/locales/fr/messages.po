@@ -13,21 +13,16 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/features/auth/LoginSelectCustomer.js:107
-#: src/features/building/BuildingNew.js:326
+#: src/features/auth/LoginSelectCustomer.js:106
+#: src/features/menu/MenuNew.js:327
 msgid "Abort"
 msgstr "Abandonner"
 
-#: src/features/building/BuildingNew.js:246
+#: src/features/menu/MenuNew.js:247
 msgid "Address"
 msgstr ""
 
-#: src/features/auth/redux/authSetTopbar.js:13
-#: src/features/auth/redux/authSetTopbar.js:13
-#~ msgid "Anmelden"
-#~ msgstr ""
-
-#: src/features/shared/ErrorBoundary.js:26
+#: src/features/shared/ErrorBoundary.js:24
 msgid "Back to home"
 msgstr "!_Back to home_FR"
 
@@ -41,64 +36,55 @@ msgstr "!_ERROR.API.BAD-REQUEST_FR"
 msgid "Board"
 msgstr "!_Board_FR"
 
-#: src/features/building/BuildingNew.js:286
+#: src/features/menu/MenuNew.js:287
 msgid "Building Insurance"
 msgstr ""
 
-#: src/features/building/BuildingNew.js:212
+#: src/features/menu/MenuNew.js:213
 msgid "Building Properties"
 msgstr "Properties"
 
-#: src/features/buildingSearch/redux/buildingSearchSetTopbar.js:13
-#: src/features/buildingSearch/redux/buildingSearchSetTopbar.js:13
-msgid "Building search"
-msgstr ""
-
-#: src/features/building/BuildingNew.js:279
+#: src/features/menu/MenuNew.js:280
 msgid "City"
 msgstr ""
 
-#: src/features/building/buildingView/BuildingInspection.js:208
-#: src/features/building/redux/buildingSetTopbar.js:36
-#: src/features/building/redux/buildingSetTopbar.js:36
+#: src/features/menu/menuView/MenuInspection.js:194
+#: src/features/menu/redux/buildingSetTopbar.js:34
+#: src/features/menu/redux/buildingSetTopbar.js:34
 msgid "Components"
 msgstr ""
 
-#: src/features/building/BuildingView.js:11
-msgid "Contacts"
-msgstr ""
-
-#: src/features/building/BuildingNew.js:322
+#: src/features/menu/MenuNew.js:323
 msgid "Create building"
 msgstr "Construire un bâtiment"
 
 #: src/features/auth/redux/authSetTopbar.js:13
 #: src/features/auth/redux/authSetTopbar.js:13
-#: src/features/profile/Profile.js:94
+#: src/features/profile/Profile.js:95
 msgid "Customer"
 msgstr "Client"
 
-#: src/features/building/BuildingNew.js:225
+#: src/features/menu/MenuNew.js:226
 msgid "Designation"
 msgstr "Désignation"
 
-#: src/features/building/buildingView/BuildingInspection.js:245
-msgid "Discard inspection"
-msgstr "!_Discard inspection_FR"
+#: src/features/menu/menuView/MenuInspection.js:220
+msgid "Discard section"
+msgstr ""
 
-#: src/features/board/Board.js:68
+#: src/features/board/Board.js:85
 msgid "Do you want to create a new building (+) or do you want to search the existing buildings?"
 msgstr "!_Do you want to create a new building (+) or do you want to search the existing buildings?"
 
-#: src/features/building/BuildingNew.js:233
+#: src/features/menu/MenuNew.js:234
 msgid "EGID"
 msgstr ""
 
-#: src/features/profile/Profile.js:84
+#: src/features/profile/Profile.js:85
 msgid "Email"
 msgstr "!_Email_FR"
 
-#: src/features/auth/LoginSelectCustomer.js:87
+#: src/features/auth/LoginSelectCustomer.js:86
 msgid "Environment"
 msgstr ""
 
@@ -107,53 +93,41 @@ msgstr ""
 msgid "Error"
 msgstr "!_ERROR.API.UNAVAILABLE_FR"
 
-#: src/features/building/buildingView/buildingInspection/BuildingComponentsView.js:9
-msgid "Gallery"
-msgstr ""
-
-#: src/features/building/BuildingNew.js:257
+#: src/features/menu/MenuNew.js:258
 msgid "House number"
 msgstr ""
 
-#: src/features/building/buildingView/BuildingInspection.js:229
+#: src/features/menu/menuView/MenuInspection.js:205
 msgid "Image gallery"
 msgstr ""
 
-#: src/features/building/BuildingNew.js:289
+#: src/features/menu/MenuNew.js:290
 msgid "Index Year"
 msgstr ""
 
-#: src/features/building/BuildingView.js:11
-msgid "Inspection"
-msgstr ""
-
-#: src/features/building/buildingView/buildingInspection/BuildingComponentsView.js:9
+#: src/features/menu/menuView/menuInspection/MenuComponentsView.js:9
 msgid "List"
 msgstr ""
 
-#: src/features/buildingSearch/BuildingSearch.js:104
-msgid "Load more"
-msgstr ""
-
-#: src/features/auth/LoginForm.js:122
+#: src/features/auth/LoginForm.js:123
 #: src/features/auth/redux/authSetTopbar.js:13
 #: src/features/auth/redux/authSetTopbar.js:13
 msgid "Login"
 msgstr "!_Login_FR"
 
-#: src/features/profile/Profile.js:105
+#: src/features/profile/Profile.js:106
 msgid "Logout"
 msgstr "!_Logout_FR"
 
-#: src/features/board/Board.js:66
+#: src/features/board/Board.js:84
 msgid "Make a choice"
 msgstr "!_Make a choice"
 
-#: src/features/profile/Profile.js:89
+#: src/features/profile/Profile.js:90
 msgid "Mobile"
 msgstr "!_Mobile_FR"
 
-#: src/features/profile/Profile.js:74
+#: src/features/profile/Profile.js:75
 msgid "Name"
 msgstr "!_Name_FR"
 
@@ -161,16 +135,16 @@ msgstr "!_Name_FR"
 msgid "New Version"
 msgstr "!_New Version_FR"
 
-#: src/features/building/redux/buildingSetTopbar.js:13
-#: src/features/building/redux/buildingSetTopbar.js:13
+#: src/features/menu/redux/buildingSetTopbar.js:13
+#: src/features/menu/redux/buildingSetTopbar.js:13
 msgid "New building"
 msgstr "Nouveau bâtiment"
 
-#: src/features/auth/LoginSelectCustomer.js:103
+#: src/features/auth/LoginSelectCustomer.js:102
 msgid "Next"
 msgstr ""
 
-#: src/features/board/Board.js:115
+#: src/features/board/Board.js:129
 msgid "No menu loaded yet."
 msgstr ""
 
@@ -182,22 +156,22 @@ msgstr ""
 msgid "Not Found"
 msgstr "!_ERROR.API.NOT-FOUND_FR"
 
-#: src/features/auth/Login.js:84
 #: src/features/auth/Login.js:85
-#: src/features/building/buildingView/BuildingInspection.js:157
-#: src/features/building/buildingView/BuildingInspection.js:158
+#: src/features/auth/Login.js:86
+#: src/features/shared/redux/modalNotImplementedShow.js:9
+#: src/features/shared/redux/modalNotImplementedShow.js:10
 msgid "Not Implemented"
 msgstr ""
 
-#: src/common/inputPasswordField.js:96
+#: src/common/inputPasswordField.js:97
 msgid "Password"
 msgstr "!_Password_FR"
 
-#: src/features/building/buildingView/BuildingInspection.js:251
-msgid "Please create an inspection."
+#: src/features/menu/menuView/MenuInspection.js:226
+msgid "Please create a section."
 msgstr ""
 
-#: src/features/auth/LoginSelectCustomer.js:80
+#: src/features/auth/LoginSelectCustomer.js:79
 msgid "Please select the desired environment."
 msgstr ""
 
@@ -211,28 +185,24 @@ msgstr "!_ERROR.API.INVALID-LOGIN_FR"
 msgid "Profile"
 msgstr "!_Profile_FR"
 
-#: src/features/building/BuildingView.js:11
-msgid "Properties"
-msgstr ""
-
-#: src/features/building/BuildingNew.js:215
+#: src/features/menu/MenuNew.js:216
 msgid "QC Capex Object Type"
 msgstr ""
 
-#: src/features/building/buildingView/buildingInspection/BuildingComponentsTiles.js:97
+#: src/features/menu/menuView/menuInspection/MenuComponentsTiles.js:97
 msgid "Reject"
 msgstr ""
 
-#: src/features/building/buildingView/BuildingInspection.js:193
-#: src/features/profile/Profile.js:79
+#: src/features/profile/Profile.js:80
 msgid "Role"
 msgstr "!_Role_FR"
 
 #: src/common/inputSearch.js:77
+#: src/features/menu/menuView/MenuInspection.js:202
 msgid "Search"
 msgstr ""
 
-#: src/features/auth/LoginForm.js:126
+#: src/features/auth/LoginForm.js:127
 msgid "Sign Up"
 msgstr "Signer"
 
@@ -240,15 +210,11 @@ msgstr "Signer"
 msgid "Something went wrong, please refresh."
 msgstr ""
 
-#: src/common/buildingCard.js:154
-#~ msgid "State of the inspection"
-#~ msgstr "!_State of the inspection_FR"
-
-#: src/features/building/BuildingNew.js:249
+#: src/features/menu/MenuNew.js:250
 msgid "Street"
 msgstr ""
 
-#: src/features/building/BuildingNew.js:265
+#: src/features/menu/MenuNew.js:266
 msgid "Street supplement"
 msgstr ""
 
@@ -256,51 +222,39 @@ msgstr ""
 msgid "There are no customers for your user"
 msgstr ""
 
-#: src/features/building/buildingView/buildingInspection/BuildingComponentsView.js:9
+#: src/features/menu/menuView/menuInspection/MenuComponentsView.js:9
 msgid "Tiles"
 msgstr ""
-
-#: src/features/auth/LoginSelectCustomer.js:89
-#~ msgid "Umgebung"
-#~ msgstr ""
 
 #: src/common/messages.js:6
 msgid "Unauthorized"
 msgstr "!_ERROR.API.UNAUTHORIZED_FR"
 
-#: src/features/building/buildingView/BuildingInspection.js:185
+#: src/features/menu/menuView/MenuInspection.js:173
+#: src/features/menu/menuView/MenuInspection.js:179
 msgid "User"
 msgstr ""
 
-#: src/features/auth/LoginForm.js:102
+#: src/features/auth/LoginForm.js:103
 msgid "Username"
 msgstr "!_Username_FR"
 
-#: src/features/building/BuildingNew.js:297
+#: src/features/menu/MenuNew.js:298
 msgid "Value"
 msgstr ""
 
-#: src/features/profile/Profile.js:109
+#: src/features/profile/Profile.js:110
 msgid "Version"
 msgstr ""
 
-#: src/features/building/BuildingNew.js:305
+#: src/features/menu/MenuNew.js:306
 msgid "Volume"
 msgstr ""
 
-#: src/common/buildingCard.js:148
-#: src/features/building/BuildingNew.js:239
+#: src/features/menu/MenuNew.js:240
 msgid "Year of construction"
 msgstr "Année de construction"
 
-#: src/features/building/BuildingNew.js:271
+#: src/features/menu/MenuNew.js:272
 msgid "ZIP Code"
-msgstr ""
-
-#: src/common/buildingCard.js:157
-#~ msgid "none available"
-#~ msgstr "!_none available_FR>>>>>>> bbf2f19f98c42cf8339a241d4c7650facdc5fd7c"
-
-#: src/features/building/buildingView/BuildingInspection.js:218
-msgid "{current} of {max} Components"
 msgstr ""

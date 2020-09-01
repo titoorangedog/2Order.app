@@ -56,8 +56,6 @@ export const selectGetQCCapexObjectTypes = createSelector(
   building => building.qccapexobjecttypes,
 );
 
-export const selectGetInspection = createSelector(selectBuilding, building => building.inspection);
-
-export const selectGetComponents = createSelector(selectBuilding, building => building.components);
+export const selectGetSection = createSelector(selectBuilding, building => building.inspection);
 
 export const selectIsBusy = createSelector(selectBuilding, building => building.ui.busy);

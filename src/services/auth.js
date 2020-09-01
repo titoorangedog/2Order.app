@@ -10,7 +10,6 @@ export async function authenticationLogin(username, password) {
       username,
       password,
     });
-    console.log('response', response);
 
     await setSession(response.data);
   } catch (error) {
@@ -22,12 +21,12 @@ export async function authenticationLogin(username, password) {
 
 export async function authenticationLogout(force = true) {
   try {
-    if (force) {
-      const token = await authGetToken();
-      const headers = { Authorization: `Bearer ${token}` };
+    // if (force) {
+    //   const token = await authGetToken();
+    //   const headers = { Authorization: `Bearer ${token}` };
 
-      await Axios.create({ headers }).post('logout');
-    }
+    //   await Axios.create({ headers }).post('logout');
+    // }
     await clearSession();
   } catch (error) {
     const [, message] = extractErrorMessage(error);
@@ -53,7 +52,7 @@ export async function authGetToken() {
 
 export async function setSession(response) {
   const decoded = JwtDecode(response.token);
-  console.log('response', response);
+  console.log('decoded', decoded);
   await localforage.setItem('auth@token', response.token);
   await localforage.setItem('auth@expires_at', decoded.exp);
 }

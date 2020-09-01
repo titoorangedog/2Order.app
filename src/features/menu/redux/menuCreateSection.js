@@ -2,19 +2,19 @@ import { post } from '@src/services/api';
 import produce from 'immer';
 import { call, select, put, takeLatest } from 'redux-saga/effects';
 import {
-  BUILDING_CREATE_INSPECTION,
-  BUILDING_CREATE_INSPECTION_ERROR,
-  BUILDING_CREATE_INSPECTION_SUCCESS,
+  MENU_CREATE_SECTION,
+  MENU_CREATE_SECTION_ERROR,
+  MENU_CREATE_SECTION_SUCCESS,
 } from './constants';
 import { selectCurrentBuilding } from './selectors';
 
-export function buildingCreateInspection() {
+export function menuCreateSection() {
   return {
-    type: BUILDING_CREATE_INSPECTION,
+    type: MENU_CREATE_SECTION,
   };
 }
 
-function* doBuildingCreateInspection() {
+function* doMenuCreateSection() {
   try {
     const building = yield select(selectCurrentBuilding);
     if (!!building) {
@@ -22,36 +22,36 @@ function* doBuildingCreateInspection() {
         buildingId: building.buildingId,
       });
       yield put({
-        type: BUILDING_CREATE_INSPECTION_SUCCESS,
+        type: MENU_CREATE_SECTION_SUCCESS,
       });
     } else {
       yield put({
-        type: BUILDING_CREATE_INSPECTION_ERROR,
+        type: MENU_CREATE_SECTION_ERROR,
         payload: "Error: Current building doesn't exists.",
       });
     }
   } catch (error) {
     yield put({
-      type: BUILDING_CREATE_INSPECTION_ERROR,
+      type: MENU_CREATE_SECTION_ERROR,
       payload: error.message,
     });
   }
 }
 
-export function* buildingCreateInspectionSagas() {
-  yield takeLatest(BUILDING_CREATE_INSPECTION, doBuildingCreateInspection);
+export function* menuCreateSectionSagas() {
+  yield takeLatest(MENU_CREATE_SECTION, doMenuCreateSection);
 }
 
 export const reducer = (state, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case BUILDING_CREATE_INSPECTION:
+      case MENU_CREATE_SECTION:
         draft.ui.busy = true;
         break;
-      case BUILDING_CREATE_INSPECTION_SUCCESS:
+      case MENU_CREATE_SECTION_SUCCESS:
         draft.ui.busy = false;
         break;
-      case BUILDING_CREATE_INSPECTION_ERROR:
+      case MENU_CREATE_SECTION_ERROR:
         draft.ui.busy = false;
         break;
       default:

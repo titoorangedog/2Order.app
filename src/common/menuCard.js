@@ -7,7 +7,7 @@ import React, { useCallback } from 'react';
 import { Icon } from '@common/icon';
 
 const useStyles = makeStyles(theme => ({
-  building: {
+  menu: {
     display: 'grid',
     gridTemplateRows: 'auto',
     gridTemplateColumns: 'auto',
@@ -15,6 +15,8 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '12px',
     boxShadow: '0px 2px 5px rgba(0,0,0,0.02)',
     userSelect: 'none',
+    marginBottom: '5px',
+    borderBottom: '2px solid ' + theme.palette.card.border,
   },
   menuWithHighlight: {
     gridTemplateColumns: '6px auto',
@@ -79,7 +81,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export const BuildingCard = props => {
+export const MenuCard = props => {
   const classes = useStyles(props);
   const {
     menu,
@@ -99,7 +101,7 @@ export const BuildingCard = props => {
 
   return (
     <SpinnerContent show={isBusy}>
-      <div className={clsx(classes.building)} onClick={!!handleClick && handleClick}>
+      <div className={clsx(classes.menu)} onClick={!!handleClick && handleClick}>
         <div className={clsx(classes.menuContent, classes.menuBorder)}>
           <div className={classes.menuTitle}>
             {menuId} - {menuName}

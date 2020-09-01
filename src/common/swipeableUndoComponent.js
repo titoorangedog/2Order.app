@@ -80,7 +80,7 @@ export const SwipeableUndo = props => {
     canUndo,
     isDeleted,
     onUndoDelete,
-    building,
+    menu,
     undoProgressBar,
     undoExpirationTime,
     unmount,
@@ -95,10 +95,10 @@ export const SwipeableUndo = props => {
   }, [undoProgressBar]);
 
   useEffect(() => {
-    if (!!building && !!isBusyRemovingMenu[building.buildingId]) {
+    if (!!menu && !!isBusyRemovingMenu[menu.id]) {
       setOnDeleting(true);
     }
-  }, [isBusyRemovingMenu, building]);
+  }, [isBusyRemovingMenu, menu]);
 
   useBeforeUnload(() => {
     unmount();

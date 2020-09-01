@@ -1,7 +1,6 @@
 export const initialState = {
-  qccapexobjecttypes: null,
-  inspection: null,
-  components: null,
+  menuId: null,
+  sections: null,
   ui: {
     busy: false,
     modal: { retain: false, delete: false },

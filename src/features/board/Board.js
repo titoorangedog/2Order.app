@@ -1,7 +1,6 @@
-import { BuildingCard } from '@common/buildingCard';
+import { MenuCard } from '@common/menuCard';
 import { EmptyContent } from '@common/emptyContent';
 import { menuRoutes } from '@features/menu/routes';
-import { buildingSearchRoutes } from '@features/buildingSearch/routes';
 import { ActionBar } from '@features/shared/ActionBar';
 import { ActionBarButton } from '@features/shared/ActionBarButton';
 import { ActionBarMenuButton } from '@features/shared/ActionBarMenuButton';
@@ -63,17 +62,12 @@ export const BoardComponent = props => {
 
   const handleNavigateToView = useCallback(
     building => {
-      console.log('handleNavigateToView building: ', building);
       push(menuRoutes.menuView.replace(':id', building.id));
     },
     [push],
   );
 
   const handleNavigateToBuildingNew = useCallback(() => push(menuRoutes.menuNew), [push]);
-  const handleNavigateToBuildingSearch = useCallback(
-    () => push(buildingSearchRoutes.buildingSearch),
-    [push],
-  );
 
   const handleScan = data => {
     if (data) {
@@ -96,13 +90,9 @@ export const BoardComponent = props => {
           icon: <Icon name="IconPlusSign" paletteColor="modal.default" />,
           command: handleNavigateToBuildingNew,
         },
-        {
-          icon: <Icon name="IconFilter" paletteColor="modal.default" />,
-          command: handleNavigateToBuildingSearch,
-        },
       ],
     });
-  }, [sharedModalActionsShow, handleNavigateToBuildingNew, handleNavigateToBuildingSearch]);
+  }, [sharedModalActionsShow, handleNavigateToBuildingNew]);
 
   const handleRefreshBoard = useCallback(() => {
     boardGetClubMenus();
@@ -118,8 +108,8 @@ export const BoardComponent = props => {
           <TransitionGroup className={classes.boardBuildings}>
             {clubMenus.map(b => (
               <CSSTransition key={'menu-' + b.id} timeout={300} classNames="list">
-                <SwipeableDeleteUndoComponent key={'menu-' + b.id} threshold={50} building={b}>
-                  <BuildingCard
+                <SwipeableDeleteUndoComponent key={'menu-' + b.id} threshold={50} menu={b}>
+                  <MenuCard
                     menu={b}
                     menuId={b.id}
                     menuName={b.name}

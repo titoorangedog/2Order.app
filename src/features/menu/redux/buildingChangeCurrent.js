@@ -1,10 +1,10 @@
 import produce from 'immer';
 
-import { BUILDING_CHANGE_CURRENT } from './constants';
+import { MENU_CHANGE_CURRENT } from './constants';
 
 export function buildingChangeCurrent(values) {
   return {
-    type: BUILDING_CHANGE_CURRENT,
+    type: MENU_CHANGE_CURRENT,
     payload: values,
   };
 }
@@ -12,7 +12,7 @@ export function buildingChangeCurrent(values) {
 export const reducer = (state, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case BUILDING_CHANGE_CURRENT:
+      case MENU_CHANGE_CURRENT:
         draft.currentBuilding = action.payload;
         break;
       default:

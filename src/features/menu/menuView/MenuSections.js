@@ -16,7 +16,7 @@ import { ActionBarMenuItem } from '@features/shared/ActionBarMenuItem';
 import { useCallback } from 'react';
 import {
   selectIsBusy,
-  selectGetInspection,
+  selectGetSection,
   selectCurrentBuilding,
 } from '@features/menu/redux/selectors';
 import { menuRoutes } from '@features/menu/routes';
@@ -39,9 +39,22 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '8px',
     boxShadow: '0px 2px 5px rgba(0,0,0,0.02)',
   },
-  inspectionHeader: {
+  inspectionHeaderInfo: {
+    background: theme.palette.secondary.main,
+    color: theme.palette.secondary.contrastText,
+    borderTopRightRadius: 'inherit',
+    borderTopLeftRadius: 'inherit',
+    padding: theme.spacing(2, 2, 1.5),
+    display: 'grid',
+    gridTemplateRows: 'auto auto',
+    gridTemplateAreas: '"title" "bottom"',
+    gridRowGap: theme.spacing(1),
+  },
+  inspectionHeaderDetails: {
     background: theme.palette.primary.main,
     color: theme.palette.primary.contrastText,
+  },
+  inspectionHeaderCommon: {
     borderTopRightRadius: 'inherit',
     borderTopLeftRadius: 'inherit',
     padding: theme.spacing(2, 2, 1.5),
@@ -115,9 +128,21 @@ const useStyles = makeStyles(theme => ({
     alignContent: 'space-between',
   },
   inspectionSectionTitle: {
+    display: 'grid',
     gridArea: 'title',
+    gridTemplateColumns: 'auto auto',
+    gridTemplateAreas: '"description prize"',
     fontSize: '19px',
     fontWeight: '500',
+  },
+  sectionDescription: {
+    gridArea: 'description',
+  },
+
+  sectionPrize: {
+    gridArea: 'prize',
+    color: theme.palette.primary.main,
+    textAlign: 'right',
   },
   inspectionSectionSubtitle: {
     gridArea: 'subtitle',
@@ -132,21 +157,21 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export const BuildingInspectionComponent = props => {
+export const MenuSectionsComponent = props => {
   const {
-    inspection,
+    menuSections,
     currentBuilding,
     isBusy,
-    actions: { push, buildingCreateInspection, sharedModalNotImplementedShow },
+    actions: { push, menuCreateSection, sharedModalNotImplementedShow },
   } = props;
   const classes = useStyles(props);
 
-  const handleAddInspection = useCallback(() => {
-    buildingCreateInspection();
-  }, [buildingCreateInspection]);
+  const handleAddSection = useCallback(() => {
+    menuCreateSection();
+  }, [menuCreateSection]);
 
   const handleNavigateToComponentsView = useCallback(
-    () => push(menuRoutes.buildingComponentsView.replace(':id', currentBuilding.buildingId)),
+    () => push(menuRoutes.menuComponentsView.replace(':id', currentBuilding.id)),
     [push, currentBuilding],
   );
 
@@ -155,73 +180,63 @@ export const BuildingInspectionComponent = props => {
   }
   return (
     <>
-      {!!inspection || isBusy ? (
-        <div className={classes.container}>
-          <div className={classes.inspection}>
-            <div className={classes.inspectionHeader}>
-              <div className={classes.inspectionHeaderTitle}>
-                {!!inspection && !!inspection.createdAt
-                  ? new Date(inspection.createdAt).toLocaleDateString('de-DE', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: 'numeric',
-                    })
-                  : ''}
-              </div>
-              <div className={classes.inspectionHeaderBottomItems}>
-                <div className={classes.inspectionHeaderBottomItem}>
-                  <div className={classes.inspectionHeaderBottomItemHeader}>{i18n._('User')}</div>
-                  <div className={classes.inspectionHeaderBottomItemContent}>
-                    {!!inspection && !!inspection.assigned ? inspection.assigned : ''}
-                  </div>
-                </div>
-                <div className={classes.inspectionHeaderBottomItem}>
-                  <div className={classes.inspectionHeaderBottomItemHeader}>{i18n._('User')}</div>
-                  <div className={classes.inspectionHeaderBottomItemContent}>
-                    {!!inspection && !!inspection.attributeRole ? inspection.attributeRole : ''}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className={classes.inspectionContent}>
-              <div className={classes.inspectionSectionContainer}>
-                <div
-                  className={clsx(classes.inspectionSection, classes.withSectionSubtitle)}
-                  onClick={handleNavigateToComponentsView}
-                >
-                  <div className={classes.inspectionSectionTitle}>{i18n._('Components')}</div>
-                  <div className={classes.inspectionSectionIcon}>
-                    <Icon
-                      name="IconArrow1Right"
-                      size="14"
-                      paletteColor="building.inspection.goTo"
-                    />
-                  </div>
-                  <div className={classes.inspectionSectionSubtitle}>{i18n._('Search')}</div>
-                </div>
-                <div className={clsx(classes.inspectionSection)}>
-                  <div className={classes.inspectionSectionTitle}>{i18n._('Image gallery')}</div>
-                  <div className={classes.inspectionSectionIcon}>
-                    <Icon
-                      name="IconArrow1Right"
-                      size="14"
-                      paletteColor="building.inspection.goTo"
-                    />
-                  </div>
-                </div>
+      {/* {!!menuInspection || isBusy ? ( */}
+      <div className={classes.container}>
+        <div className={classes.inspection}>
+          <div className={clsx(classes.inspectionHeaderInfo, classes.inspectionHeaderCommon)}>
+            <div className={classes.inspectionHeaderTitle}>MENU INFO</div>
+          </div>
+          <div className={classes.inspectionContent}>
+            <div className={classes.inspectionSectionContainer}>
+              <div className={clsx(classes.inspectionSection, classes.withSectionSubtitle)}>
+                <div className={classes.inspectionSectionTitle}>1 - MENU</div>
+                <div className={classes.inspectionSectionSubtitle}>from: 18:00 to 03:00</div>
               </div>
             </div>
           </div>
-          <ActionBar position="absolute">
-            <ActionBarMenuButton color="primary" label="menu" icon="IconMenu">
-              <ActionBarMenuItem icon="IconCross" onClick={sharedModalNotImplementedShow}>
-                {i18n._('Discard inspection')}
-              </ActionBarMenuItem>
-            </ActionBarMenuButton>
-          </ActionBar>
         </div>
-      ) : (
-        <EmptyContent locale={i18n._('Please create an inspection.')} responsive>
+        <div className={classes.inspection}>
+          <div className={clsx(classes.inspectionHeaderDetails, classes.inspectionHeaderCommon)}>
+            <div className={classes.inspectionHeaderTitle}>COCKTAIL ALCOLICO</div>
+          </div>
+          <div className={classes.inspectionContent}>
+            <div className={classes.inspectionSectionContainer}>
+              <div
+                className={clsx(classes.inspectionSection, classes.withSectionSubtitle)}
+                onClick={handleNavigateToComponentsView}
+              >
+                <div className={classes.inspectionSectionTitle}>
+                  <div className={classes.sectionDescription}>Aperol Spritz</div>
+                  <div className={classes.sectionPrize}>7.00</div>
+                </div>
+                <div className={classes.inspectionSectionSubtitle}>
+                  Prosecco, Aperol, Seltz, arancia
+                </div>
+              </div>
+              <div
+                className={clsx(classes.inspectionSection, classes.withSectionSubtitle)}
+                onClick={handleNavigateToComponentsView}
+              >
+                <div className={classes.inspectionSectionTitle}>
+                  <div className={classes.sectionDescription}>Moskow Mule</div>
+                  <div className={classes.sectionPrize}>7.50</div>
+                </div>
+                <div className={classes.inspectionSectionSubtitle}>Vodka, Ginger Beer, Lime</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ActionBar position="absolute">
+          <ActionBarMenuButton color="primary" label="menu" icon="IconMenu">
+            <ActionBarMenuItem icon="IconCross" onClick={sharedModalNotImplementedShow}>
+              {i18n._('Discard section')}
+            </ActionBarMenuItem>
+          </ActionBarMenuButton>
+        </ActionBar>
+      </div>
+
+      {/* ) : (
+        <EmptyContent locale={i18n._('Menu empty. Please create a section.')} responsive>
           <ActionBar position="absolute">
             <ActionBarButton
               color="primary"
@@ -231,7 +246,7 @@ export const BuildingInspectionComponent = props => {
             />
           </ActionBar>
         </EmptyContent>
-      )}
+      )} */}
     </>
   );
 };
@@ -240,7 +255,7 @@ export const BuildingInspectionComponent = props => {
 function mapStateToProps(state) {
   return {
     isBusy: selectIsBusy(state),
-    inspection: selectGetInspection(state),
+    inspection: selectGetSection(state),
     currentBuilding: selectCurrentBuilding(state),
   };
 }
@@ -252,7 +267,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export const BuildingInspection = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(BuildingInspectionComponent);
+export const MenuSections = connect(mapStateToProps, mapDispatchToProps)(MenuSectionsComponent);

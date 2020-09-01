@@ -3,10 +3,7 @@ import { Board } from '@features/board/Board';
 import { boardRoutes } from '@features/board/routes';
 import { MenuNew } from '@features/menu/MenuNew';
 import { MenuView } from '@features/menu/MenuView';
-import { BuildingComponentsView } from '@features/menu/buildingView/buildingInspection/BuildingComponentsView';
 import { menuRoutes } from '@features/menu/routes';
-import { BuildingSearch } from '@features/buildingSearch/BuildingSearch';
-import { buildingSearchRoutes } from '@features/buildingSearch/routes';
 import { Profile } from '@features/profile/Profile';
 import { profileRoutes } from '@features/profile/routes';
 import { ModalActions } from '@features/shared/ModalActions';
@@ -51,10 +48,8 @@ const MasterComponent = props => {
         <div className={classes.content}>
           <Switch>
             <Route path={boardRoutes.board} component={Board} />
-            <Route path={buildingSearchRoutes.buildingSearch} component={BuildingSearch} />
             <Route path={menuRoutes.menuNew} component={MenuNew} />
-            <Route path={menuRoutes.buildingComponentsView} component={BuildingComponentsView} />
-            <Route path={menuRoutes.MenuView} component={MenuView} />
+            <Route path={menuRoutes.menuView} component={MenuView} />
             <Route path={profileRoutes.profile} component={Profile} />
             <Route path="*" component={NotFound} />
           </Switch>

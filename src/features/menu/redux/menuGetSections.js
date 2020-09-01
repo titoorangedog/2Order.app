@@ -3,73 +3,73 @@ import { call, select, put, takeLatest } from 'redux-saga/effects';
 import { selectIsBuildingViewRoute, selectCurrentBuilding } from './selectors';
 import { LOCATION_CHANGE } from 'connected-react-router';
 import {
-  BUILDING_GET_INSPECTION,
-  BUILDING_GET_INSPECTION_SUCCESS,
-  BUILDING_GET_INSPECTION_ERROR,
-  BUILDING_CREATE_INSPECTION_SUCCESS,
+  MENU_GET_SECTIONS,
+  MENU_GET_SECTIONS_SUCCESS,
+  MENU_GET_SECTIONS_ERROR,
+  MENU_CREATE_SECTION_SUCCESS,
 } from './constants';
 import { get } from '@services/api';
 
 export function buildingGetInspection() {
   return {
-    type: BUILDING_GET_INSPECTION,
+    type: MENU_GET_SECTIONS,
   };
 }
 
-function* doBuildingGetInspectionOnOtherActions() {
+function* doMenuGetSectionsOnOtherActions() {
   const isBuildingViewRoute = yield select(selectIsBuildingViewRoute);
   if (!!isBuildingViewRoute) {
     yield put(buildingGetInspection());
   }
 }
 
-function* doBuildingGetInspection() {
+function* doMenuGetSections() {
   const building = yield select(selectCurrentBuilding);
   if (!!building) {
     try {
-      const inspection = yield call(get, `inspections/${building.buildingId}`);
-      if (!!inspection && !inspection.isTransient) {
+      const sections = yield call(get, `/clubs/1/menu/${building.id}`);
+      if (!!sections) {
         yield put({
-          type: BUILDING_GET_INSPECTION_SUCCESS,
-          payload: inspection,
+          type: MENU_GET_SECTIONS_SUCCESS,
+          payload: sections,
         });
       } else {
         yield put({
-          type: BUILDING_GET_INSPECTION_SUCCESS,
+          type: MENU_GET_SECTIONS_SUCCESS,
           payload: null,
         });
       }
     } catch (error) {
       yield put({
-        type: BUILDING_GET_INSPECTION_ERROR,
+        type: MENU_GET_SECTIONS_ERROR,
         payload: error.message,
       });
     }
   } else {
     yield put({
-      type: BUILDING_GET_INSPECTION_ERROR,
+      type: MENU_GET_SECTIONS_ERROR,
       payload: "Error: Current building doesn't exists.",
     });
   }
 }
 
-export function* buildingGetInspectionSagas() {
-  yield takeLatest(LOCATION_CHANGE, doBuildingGetInspectionOnOtherActions);
-  yield takeLatest(BUILDING_GET_INSPECTION, doBuildingGetInspection);
-  yield takeLatest(BUILDING_CREATE_INSPECTION_SUCCESS, doBuildingGetInspectionOnOtherActions);
+export function* menuGetSectionsSagas() {
+  yield takeLatest(LOCATION_CHANGE, doMenuGetSectionsOnOtherActions);
+  yield takeLatest(MENU_GET_SECTIONS, doMenuGetSections);
+  yield takeLatest(MENU_CREATE_SECTION_SUCCESS, doMenuGetSectionsOnOtherActions);
 }
 
 export const reducer = (state, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case BUILDING_GET_INSPECTION:
+      case MENU_GET_SECTIONS:
         draft.ui.busy = true;
         break;
-      case BUILDING_GET_INSPECTION_SUCCESS:
+      case MENU_GET_SECTIONS_SUCCESS:
         draft.ui.busy = false;
-        draft.inspection = action.payload;
+        draft.sections = action.payload;
         break;
-      case BUILDING_GET_INSPECTION_ERROR:
+      case MENU_GET_SECTIONS_ERROR:
         draft.ui.busy = false;
         break;
       default:

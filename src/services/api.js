@@ -49,21 +49,21 @@ export async function login(username, password) {
 
 export async function post(controller, data, mustBeAuthenticated = true) {
   return await call(
-    async headers => await Axios.post(`${baseURL}/${controller}`, data, { headers }),
+    async headers => await Axios.post(`${host}/${controller}`, data, { headers }),
     mustBeAuthenticated,
   );
 }
 
 export async function put(controller, data, mustBeAuthenticated = true) {
   return await call(
-    async headers => await Axios.put(`${baseURL}/${controller}`, data, { headers }),
+    async headers => await Axios.put(`${host}/${controller}`, data, { headers }),
     mustBeAuthenticated,
   );
 }
 
 export async function patch(controller, data, mustBeAuthenticated = true) {
   return await call(
-    async headers => await Axios.patch(`${baseURL}/${controller}`, data, { headers }),
+    async headers => await Axios.patch(`${host}/${controller}`, data, { headers }),
     mustBeAuthenticated,
   );
 }
@@ -78,21 +78,21 @@ export async function get(controller, mustBeAuthenticated = true) {
 export async function downloadFile(controller, mustBeAuthenticated = true) {
   return await call(
     async headers =>
-      await Axios.get(`${baseURL}/${controller}`, { headers, responseType: 'arraybuffer' }),
+      await Axios.get(`${host}/${controller}`, { headers, responseType: 'arraybuffer' }),
     mustBeAuthenticated,
   );
 }
 
 export async function getById(controller, id, mustBeAuthenticated = true) {
   return await call(
-    async headers => await Axios.get(`${baseURL}/${controller}/${id}`, { headers }),
+    async headers => await Axios.get(`${host}/${controller}/${id}`, { headers }),
     mustBeAuthenticated,
   );
 }
 
 export async function deleteById(controller, id, mustBeAuthenticated = true) {
   return await call(
-    async headers => await Axios.delete(`${baseURL}/${controller}/${id}`, { headers }),
+    async headers => await Axios.delete(`${host}/${controller}/${id}`, { headers }),
     mustBeAuthenticated,
   );
 }

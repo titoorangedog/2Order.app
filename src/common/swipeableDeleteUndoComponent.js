@@ -10,7 +10,7 @@ import { SwipeableUndoComponent } from './swipeableUndoComponent';
 export const SwipeableDeleteUndo = props => {
   const {
     children,
-    building,
+    menu,
     actions: { boardRemoveMenu },
     ...otherProps
   } = props;
@@ -27,20 +27,20 @@ export const SwipeableDeleteUndo = props => {
     isDeleted: false,
   });
 
-  const handleDeleteBuilding = useCallback(() => {
+  const handleDeleteMenu = useCallback(() => {
     if (!state.current.isDeleted && state.current.canUndo) {
       state.current.isDeleted = true;
       state.current.canUndo = false;
-      boardRemoveMenu(building);
+      boardRemoveMenu(menu);
       clearTimeout(deleteTimeout);
     }
-  }, [state, boardRemoveMenu, deleteTimeout, building]);
+  }, [state, boardRemoveMenu, deleteTimeout, menu]);
 
-  const handleDeletingBuilding = useCallback(() => {
+  const handleDeletingMenu = useCallback(() => {
     state.current.canUndo = true;
 
-    setDeleteTimeout(setTimeout(() => handleDeleteBuilding(), undoExpirationTime));
-  }, [handleDeleteBuilding]);
+    setDeleteTimeout(setTimeout(() => handleDeleteMenu(), undoExpirationTime));
+  }, [handleDeleteMenu]);
 
   const handleUndo = useCallback(() => {
     state.current.position = 0;
@@ -63,14 +63,14 @@ export const SwipeableDeleteUndo = props => {
           isDeleted={state.current.isDeleted}
           onUndoDelete={handleUndo}
           canUndo={state.current.canUndo}
-          building={building}
+          menu={menu}
           undoProgressBar={state.current.undoProgressBar}
           undoExpirationTime={undoExpirationTime}
-          unmount={handleDeleteBuilding}
+          unmount={handleDeleteMenu}
         />
       );
     }
-  }, [state, handleUndo, building, handleDeleteBuilding]);
+  }, [state, handleUndo, menu, handleDeleteMenu]);
 
   useEffect(() => {
     return () => {
@@ -82,7 +82,7 @@ export const SwipeableDeleteUndo = props => {
   return (
     <SwipeableComponent
       swipeRightComponent={Component()}
-      onSwipeRight={handleDeletingBuilding}
+      onSwipeRight={handleDeletingMenu}
       position={state.current.position}
       {...otherProps}
     >
