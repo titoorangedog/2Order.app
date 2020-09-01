@@ -1,12 +1,8 @@
 {
-  "name": "2Order.app",
+  "name": "toorder.app",
   "proxy": "https://to-order.herokuapp.com/",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "yarn": "1.x"
-  },
-  "homepage": "https://titoorangedog.github.io/2Order.app/",
   "dependencies": {
     "@craco/craco": "^5.6.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
@@ -50,8 +46,8 @@
     "use-debounce": "^3.1.0"
   },
   "scripts": {
-    "start": "yarn update-icons && yarn lingui:compile && craco start",
-    "build": "yarn lingui:compile && craco build",
+    "start": "npm run update-icons && npm run lingui:compile && craco start",
+    "build": "npm run lingui:compile && craco build",
     "lint": "eslint --max-warnings=0 ./src",
     "prettier": "prettier --check ./src/**/*.js",
     "format": "eslint --fix ./src && prettier --write ./src/**/*.js",
@@ -61,8 +57,7 @@
     "lingui:extract": "lingui extract",
     "lingui:compile": "lingui compile",
     "lingui:clean": "lingui extract --clean",
-    "update-icons": "node ./scripts/update-icons.js",
-    "deploy": "gh-pages -d build --git git"
+    "update-icons": "node ./scripts/update-icons.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -84,7 +79,6 @@
     "@lingui/cli": "^2.9.1",
     "@lingui/macro": "^2.8.3",
     "babel-core": "^7.0.0-bridge.0",
-    "cross-env": "^6.0.3",
-    "gh-pages": "^3.1.0"
+    "cross-env": "^6.0.3"
   }
 }
