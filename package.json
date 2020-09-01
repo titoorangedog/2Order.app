@@ -1,11 +1,12 @@
 {
   "name": "2Order.app",
-  "proxy": "http://to-order.herokuapp.com/",
+  "proxy": "https://to-order.herokuapp.com/",
   "version": "0.1.0",
   "private": true,
   "engines": {
     "yarn": "1.x"
   },
+  "homepage": "https://titoorangedog.github.io/2Order.app/",
   "dependencies": {
     "@craco/craco": "^5.6.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
@@ -50,8 +51,6 @@
   },
   "scripts": {
     "start": "yarn update-icons && yarn lingui:compile && craco start",
-    "start:dev": "yarn update-icons && yarn lingui:compile && craco start",
-    "build:dev": "yarn lingui:compile && craco build",
     "build": "yarn lingui:compile && craco build",
     "lint": "eslint --max-warnings=0 ./src",
     "prettier": "prettier --check ./src/**/*.js",
@@ -62,7 +61,8 @@
     "lingui:extract": "lingui extract",
     "lingui:compile": "lingui compile",
     "lingui:clean": "lingui extract --clean",
-    "update-icons": "node ./scripts/update-icons.js"
+    "update-icons": "node ./scripts/update-icons.js",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
