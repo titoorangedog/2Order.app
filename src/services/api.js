@@ -7,6 +7,7 @@ import HttpStatus from 'http-status-codes';
 import { authGetToken, authIsAuthenticated } from './auth';
 import { extractErrorMessage } from './extractErrorMessage';
 
+const host = 'https://to-order.herokuapp.com/api/v1/';
 const baseURL = '/api/v1';
 
 async function call(httpCall, mustBeAuthenticated) {
@@ -43,9 +44,7 @@ async function call(httpCall, mustBeAuthenticated) {
 export async function login(username, password) {
   const data = { username, password };
   console.log('login data', data);
-  return await call(
-    async headers => await Axios.post(`https://to-order.herokuapp.com/api/v1/login`, data),
-  );
+  return await call(async headers => await Axios.post(`${host}login`, data));
 }
 
 export async function post(controller, data, mustBeAuthenticated = true) {
@@ -71,7 +70,7 @@ export async function patch(controller, data, mustBeAuthenticated = true) {
 
 export async function get(controller, mustBeAuthenticated = true) {
   return await call(
-    async headers => await Axios.get(`${baseURL}/${controller}`, { headers }),
+    async headers => await Axios.get(`${host}/${controller}`, { headers }),
     mustBeAuthenticated,
   );
 }
