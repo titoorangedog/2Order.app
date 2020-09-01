@@ -23,7 +23,7 @@ function* doGetBoardClubMenusOnOtherActions() {
 
 function* doGetBoardClubMenus() {
   try {
-    const board = yield call(get, '/clubs/1/menu', true);
+    const board = yield call(get, 'clubs/1/menu', true);
     console.log(board, board);
 
     yield put({
