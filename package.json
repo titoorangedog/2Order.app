@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "12.11.1"
+    "yarn": "1.x"
   },
   "homepage": ".",
   "dependencies": {
@@ -50,9 +50,8 @@
     "use-debounce": "^3.1.0"
   },
   "scripts": {
-    "start": "craco start",
-    "start:dev": "npm run update-icons && npm run lingui:compile && craco start",
-    "build": "npm run lingui:compile && craco build",
+    "start": "yarn update-icons && yarn lingui:compile && craco start",
+    "build": "yarn lingui:compile && craco build",
     "lint": "eslint --max-warnings=0 ./src",
     "prettier": "prettier --check ./src/**/*.js",
     "format": "eslint --fix ./src && prettier --write ./src/**/*.js",
