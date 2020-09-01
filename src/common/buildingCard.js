@@ -1,5 +1,5 @@
 import { SpinnerContent } from '@features/shared/SpinnerContent';
-import { Trans } from '@lingui/macro';
+// import { Trans } from '@lingui/macro';
 import IconButton from '@material-ui/core/IconButton';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import clsx from 'clsx';
