@@ -62,7 +62,7 @@
     "lingui:compile": "lingui compile",
     "lingui:clean": "lingui extract --clean",
     "update-icons": "node ./scripts/update-icons.js",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build --git git"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -84,6 +84,7 @@
     "@lingui/cli": "^2.8.3",
     "@lingui/macro": "^2.8.3",
     "babel-core": "^7.0.0-bridge.0",
-    "cross-env": "^6.0.3"
+    "cross-env": "^6.0.3",
+    "gh-pages": "^3.1.0"
   }
 }
