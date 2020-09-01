@@ -49,7 +49,8 @@
   "scripts": {
     "start": "craco start",
     "start:dev": "npm run update-icons && npm run lingui:compile && craco start",
-    "build": "npm run lingui:compile && craco build",
+    "build": "craco build",
+    "build:dev": "npm run lingui:compile && craco build",
     "lint": "eslint --max-warnings=0 ./src",
     "prettier": "prettier --check ./src/**/*.js",
     "format": "eslint --fix ./src && prettier --write ./src/**/*.js",
