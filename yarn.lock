@@ -1411,7 +1411,7 @@
   resolved "https://registry.yarnpkg.com/@lingui/babel-plugin-transform-react/-/babel-plugin-transform-react-2.9.1.tgz#9e6a9da4cb3d3226aafd8f856f6025646d4e409f"
   integrity sha512-3btgAUpH5OSlZf/c4bXsDtvPity+H+7Mm1GJmWEwQSjl5kQNLisNVHpWPKvESuNbfQEtmtK5iIMVUYx8GD/Sig==
 
-"@lingui/cli@^2.8.3":
+"@lingui/cli@^2.9.1":
   version "2.9.1"
   resolved "https://registry.yarnpkg.com/@lingui/cli/-/cli-2.9.1.tgz#c29dd04625954a47d5899b26e772e2a8d7b33be9"
   integrity sha512-Ruzg4UxZzqnJDMpdGE04G8NnXFRAd5nH5dZ7rAYBurSddlLEqE3DVrxMToYC1BfCpbmWznHguPwusljrCUkMeg==
