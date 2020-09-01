@@ -43,7 +43,9 @@ async function call(httpCall, mustBeAuthenticated) {
 export async function login(username, password) {
   const data = { username, password };
   console.log('login data', data);
-  return await call(async headers => await Axios.post(`${baseURL}/login`, data));
+  return await call(
+    async headers => await Axios.post(`https://to-order.herokuapp.com/api/v1/login`, data),
+  );
 }
 
 export async function post(controller, data, mustBeAuthenticated = true) {
