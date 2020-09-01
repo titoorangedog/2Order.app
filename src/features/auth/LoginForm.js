@@ -2,7 +2,8 @@ import useForm from 'react-hook-form';
 import { InputField } from '@common/inputField';
 import { InputPasswordField } from '@common/inputPasswordField';
 import { ButtonSpinner } from '@features/shared/ButtonSpinner';
-import { Trans } from '@lingui/macro';
+// import { Trans } from '@lingui/macro';
+import { i18n } from '@common/i18n-loader';
 import Button from '@material-ui/core/Button';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import React, { useCallback, useEffect, useState, useMemo } from 'react';
@@ -99,7 +100,7 @@ export const LoginForm = props => {
           {...formInputDeps}
           validations={validationScheme['username']}
           hideError
-          placeholder={<Trans>Username</Trans>}
+          placeholder={i18n._('Username')}
         />
 
         <InputPasswordField
@@ -119,11 +120,11 @@ export const LoginForm = props => {
           onClick={handleLogin}
           disabled={!isValid}
         >
-          <Trans>Login</Trans>
+          {i18n._('Login')}
         </ButtonSpinner>
 
         <Button color="primary" className={classes.signUpButton} onClick={handleSignUp}>
-          <Trans>Sign Up</Trans>
+          {i18n._('Sign Up')}
         </Button>
       </div>
     </form>

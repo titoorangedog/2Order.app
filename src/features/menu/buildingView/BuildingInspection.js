@@ -1,7 +1,8 @@
 import { EmptyContent } from '@common/emptyContent';
 import * as actions from '@features/menu/redux/actions';
 import * as sharedActions from '@features/shared/redux/actions';
-import { Trans } from '@lingui/macro';
+// import { Trans } from '@lingui/macro';
+import { i18n } from '@common/i18n-loader';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import clsx from 'clsx';
 import { routerActions } from 'connected-react-router';
@@ -13,7 +14,6 @@ import { ActionBarButton } from '@features/shared/ActionBarButton';
 import { ActionBarMenuButton } from '@features/shared/ActionBarMenuButton';
 import { ActionBarMenuItem } from '@features/shared/ActionBarMenuItem';
 import { useCallback } from 'react';
-import { i18n } from '@common/i18n-loader';
 import {
   selectIsBusy,
   selectGetInspection,
@@ -170,17 +170,13 @@ export const BuildingInspectionComponent = props => {
               </div>
               <div className={classes.inspectionHeaderBottomItems}>
                 <div className={classes.inspectionHeaderBottomItem}>
-                  <div className={classes.inspectionHeaderBottomItemHeader}>
-                    <Trans>User</Trans>
-                  </div>
+                  <div className={classes.inspectionHeaderBottomItemHeader}>{i18n._('User')}</div>
                   <div className={classes.inspectionHeaderBottomItemContent}>
                     {!!inspection && !!inspection.assigned ? inspection.assigned : ''}
                   </div>
                 </div>
                 <div className={classes.inspectionHeaderBottomItem}>
-                  <div className={classes.inspectionHeaderBottomItemHeader}>
-                    <Trans>Role</Trans>
-                  </div>
+                  <div className={classes.inspectionHeaderBottomItemHeader}>{i18n._('User')}</div>
                   <div className={classes.inspectionHeaderBottomItemContent}>
                     {!!inspection && !!inspection.attributeRole ? inspection.attributeRole : ''}
                   </div>
@@ -193,9 +189,7 @@ export const BuildingInspectionComponent = props => {
                   className={clsx(classes.inspectionSection, classes.withSectionSubtitle)}
                   onClick={handleNavigateToComponentsView}
                 >
-                  <div className={classes.inspectionSectionTitle}>
-                    <Trans>Components</Trans>
-                  </div>
+                  <div className={classes.inspectionSectionTitle}>{i18n._('Components')}</div>
                   <div className={classes.inspectionSectionIcon}>
                     <Icon
                       name="IconArrow1Right"
@@ -203,20 +197,10 @@ export const BuildingInspectionComponent = props => {
                       paletteColor="building.inspection.goTo"
                     />
                   </div>
-                  <div className={classes.inspectionSectionSubtitle}>
-                    <Trans
-                      id="{current} of {max} Components"
-                      values={{
-                        current: '0',
-                        max: '0',
-                      }}
-                    />
-                  </div>
+                  <div className={classes.inspectionSectionSubtitle}>{i18n._('Search')}</div>
                 </div>
                 <div className={clsx(classes.inspectionSection)}>
-                  <div className={classes.inspectionSectionTitle}>
-                    <Trans>Image gallery</Trans>
-                  </div>
+                  <div className={classes.inspectionSectionTitle}>{i18n._('Image gallery')}</div>
                   <div className={classes.inspectionSectionIcon}>
                     <Icon
                       name="IconArrow1Right"
@@ -231,7 +215,7 @@ export const BuildingInspectionComponent = props => {
           <ActionBar position="absolute">
             <ActionBarMenuButton color="primary" label="menu" icon="IconMenu">
               <ActionBarMenuItem icon="IconCross" onClick={sharedModalNotImplementedShow}>
-                <Trans>Discard inspection</Trans>
+                {i18n._('Discard inspection')}
               </ActionBarMenuItem>
             </ActionBarMenuButton>
           </ActionBar>

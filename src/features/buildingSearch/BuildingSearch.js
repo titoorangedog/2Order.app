@@ -3,7 +3,8 @@ import { InputSearch } from '@common/inputSearch';
 import * as sharedActions from '@features/shared/redux/actions';
 import { Spinner } from '@features/shared/Spinner';
 import FormControl from '@material-ui/core/FormControl';
-import { Trans } from '@lingui/macro';
+// import { Trans } from '@lingui/macro';
+import { i18n } from '@common/i18n-loader';
 import Button from '@material-ui/core/Button';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { routerActions } from 'connected-react-router';
@@ -101,7 +102,7 @@ export const BuildingSearchComponent = props => {
                 className={classes.button}
                 disabled={true}
               >
-                <Trans>Load more</Trans>
+                {i18n._('Load more')}
               </Button>
             </div>
           )}

@@ -2,7 +2,8 @@ import { InputField } from '@common/inputField';
 import * as authActions from '@features/auth/redux/actions';
 import { selectLanguage } from '@features/shared/redux/selectors';
 import { Spinner } from '@features/shared/Spinner';
-import { Trans } from '@lingui/macro';
+// import { Trans } from '@lingui/macro';
+import { i18n } from '@common/i18n-loader';
 import { ButtonSpinner } from '@features/shared/ButtonSpinner';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { routerActions } from 'connected-react-router';
@@ -71,27 +72,27 @@ export const ProfileComponent = props => {
         <InputField
           readonly={true}
           value={`${userProfile.forname} ${userProfile.lastname}`}
-          placeholder={<Trans>Name</Trans>}
+          placeholder={i18n._('Name')}
         ></InputField>
         <InputField
           readonly={true}
           value={userProfile.memberRole}
-          placeholder={<Trans>Role</Trans>}
+          placeholder={i18n._('Role')}
         ></InputField>
         <InputField
           readonly={true}
           value={userProfile.mail}
-          placeholder={<Trans>Email</Trans>}
+          placeholder={i18n._('Email')}
         ></InputField>
         <InputField
           readonly={true}
           value={userProfile.mobile}
-          placeholder={<Trans>Mobile</Trans>}
+          placeholder={i18n._('Mobile')}
         ></InputField>
         <InputField
           readonly={true}
           value={userProfile.customerId}
-          placeholder={<Trans>Customer</Trans>}
+          placeholder={i18n._('Customer')}
         ></InputField>
       </div>
       <div className={classes.buttonContainer}>
@@ -102,11 +103,11 @@ export const ProfileComponent = props => {
           className={classes.loginButton}
           onClick={authLogout}
         >
-          <Trans>Logout</Trans>
+          {i18n._('Logout')}
         </ButtonSpinner>
       </div>
       <div className={classes.version}>
-        <Trans>Version</Trans>: {version}
+        {i18n._('Version')}: {version}
       </div>
     </div>
   );

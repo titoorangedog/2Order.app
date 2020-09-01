@@ -1,6 +1,7 @@
 import { SelectField } from '@common/selectField';
 import { ButtonSpinner } from '@features/shared/ButtonSpinner';
-import { Trans } from '@lingui/macro';
+// import { Trans } from '@lingui/macro';
+import { i18n } from '@common/i18n-loader';
 import Button from '@material-ui/core/Button';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import React, { useCallback, useState } from 'react';
@@ -75,14 +76,14 @@ export const LoginSelectCustomer = props => {
   return (
     <form className={classes.container}>
       <div className={classes.textContainer}>
-        <Trans>Please select the desired environment.</Trans>
+        {i18n._('Please select the desired environment.')}
       </div>
       <div className={classes.fieldsContainer}>
         <SelectField
           name="customer"
           value={customer}
           onChange={handleCustomerChange}
-          placeholder={<Trans>Environment</Trans>}
+          placeholder={i18n._('Environment')}
           keyItem="id"
           valueItem="id"
           items={customers}
@@ -98,11 +99,11 @@ export const LoginSelectCustomer = props => {
           onClick={handleSelectCustomer}
           disabled={!isValid}
         >
-          <Trans>Next</Trans>
+          {i18n._('Next')}
         </ButtonSpinner>
 
         <Button color="primary" className={classes.abortButton} onClick={onAbort}>
-          <Trans>Abort</Trans>
+          {i18n._('Abort')}
         </Button>
       </div>
     </form>

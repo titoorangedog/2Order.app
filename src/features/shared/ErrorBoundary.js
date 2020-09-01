@@ -1,4 +1,5 @@
-import { Trans } from '@lingui/macro';
+// import { Trans } from '@lingui/macro';
+import { i18n } from '@common/i18n-loader';
 import React from 'react';
 
 export class ErrorBoundary extends React.Component {
@@ -19,12 +20,8 @@ export class ErrorBoundary extends React.Component {
       // You can render any custom fallback UI
       return (
         <div>
-          <p>
-            <Trans>Something went wrong, please refresh.</Trans>.
-          </p>
-          <a href="/">
-            <Trans>Back to home</Trans>
-          </a>
+          <p>{i18n._('Something went wrong, please refresh.')}</p>
+          <a href="/">{i18n._('Back to home')}</a>
         </div>
       );
     }

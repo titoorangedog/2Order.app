@@ -4,7 +4,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import React, { useCallback, useEffect, useState } from 'react';
-import { Trans } from '@lingui/macro';
+// import { Trans } from '@lingui/macro';
+import { i18n } from '@common/i18n-loader';
 
 const useStyles = makeStyles(theme => ({
   selectError: {
@@ -79,9 +80,7 @@ export const SelectField = props => {
         onChange={handleSelect}
         {...otherProps}
       >
-        <MenuItem value="">
-          <Trans>None</Trans>
-        </MenuItem>
+        <MenuItem value="">{i18n._('None')}</MenuItem>
         {/* {!!items &&
           items.map((current, index) => (
             <MenuItem key={index} value={current[keyItem]}>

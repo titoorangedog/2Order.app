@@ -2,7 +2,8 @@ import { BuildingSection } from '@common/buildingSection';
 import { InputField } from '@common/inputField';
 import { boardRoutes } from '@features/board/routes';
 import * as sharedActions from '@features/shared/redux/actions';
-import { Trans } from '@lingui/macro';
+// import { Trans } from '@lingui/macro';
+import { i18n } from '@common/i18n-loader';
 import Button from '@material-ui/core/Button';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { routerActions } from 'connected-react-router';
@@ -209,10 +210,10 @@ export const MenuNewComponent = props => {
   return (
     <form className={classes.container}>
       <div className={classes.sections}>
-        <BuildingSection title={<Trans>Building Properties</Trans>}>
+        <BuildingSection title={i18n._('Building Properties')}>
           <SelectField
             name="qccapexobjecttype"
-            placeholder={<Trans>QC Capex Object Type</Trans>}
+            placeholder={i18n._('QC Capex Object Type')}
             validations={validationScheme['qccapexobjecttypeid']}
             {...formInputDeps}
             keyItem="id"
@@ -222,7 +223,7 @@ export const MenuNewComponent = props => {
           />
           <InputField
             name="designation"
-            placeholder={<Trans>Designation</Trans>}
+            placeholder={i18n._('Designation')}
             validations={validationScheme['designation']}
             {...formInputDeps}
             value={designation}
@@ -230,23 +231,23 @@ export const MenuNewComponent = props => {
           />
           <InputField
             name="egid"
-            placeholder={<Trans>EGID</Trans>}
+            placeholder={i18n._('EGID')}
             value={egId}
             onChange={handleChangeEgId}
           />
           <InputField
             name="buildYear"
-            placeholder={<Trans>Year of construction</Trans>}
+            placeholder={i18n._('Year of construction')}
             validations={validationScheme['buildYear']}
             {...formInputDeps}
             value={buildYear}
             onChange={handleChangeBuildYear}
           />
         </BuildingSection>
-        <BuildingSection title={<Trans>Address</Trans>}>
+        <BuildingSection title={i18n._('Address')}>
           <InputField
             name="street"
-            placeholder={<Trans>Street</Trans>}
+            placeholder={i18n._('Street')}
             validations={validationScheme['street']}
             {...formInputDeps}
             value={street}
@@ -254,7 +255,7 @@ export const MenuNewComponent = props => {
           />
           <InputField
             name="house_number"
-            placeholder={<Trans>House number</Trans>}
+            placeholder={i18n._('House number')}
             validations={validationScheme['house_number']}
             {...formInputDeps}
             value={houseNumber}
@@ -262,13 +263,13 @@ export const MenuNewComponent = props => {
           />
           <InputField
             name="street_supplement"
-            placeholder={<Trans>Street supplement</Trans>}
+            placeholder={i18n._('Street supplement')}
             value={streetSupplement}
             onChange={handleChangeStreetSupplement}
           />
           <InputField
             name="zip_code"
-            placeholder={<Trans>ZIP Code</Trans>}
+            placeholder={i18n._('ZIP Code')}
             validations={validationScheme['zip_code']}
             {...formInputDeps}
             value={zipCode}
@@ -276,17 +277,17 @@ export const MenuNewComponent = props => {
           />
           <InputField
             name="city"
-            placeholder={<Trans>City</Trans>}
+            placeholder={i18n._('City')}
             validations={validationScheme['city']}
             {...formInputDeps}
             value={city}
             onChange={handleChangeCity}
           />
         </BuildingSection>
-        <BuildingSection title={<Trans>Building Insurance</Trans>}>
+        <BuildingSection title={i18n._('Building Insurance')}>
           <InputField
             name="index_year"
-            placeholder={<Trans>Index Year</Trans>}
+            placeholder={i18n._('Index Year')}
             validations={validationScheme['index_year']}
             {...formInputDeps}
             value={indexYear}
@@ -294,7 +295,7 @@ export const MenuNewComponent = props => {
           />
           <InputField
             name="building_insurance_value"
-            placeholder={<Trans>Value</Trans>}
+            placeholder={i18n._('Value')}
             validations={validationScheme['building_insurance_value']}
             {...formInputDeps}
             value={buildingInsuranceValue}
@@ -302,7 +303,7 @@ export const MenuNewComponent = props => {
           />
           <InputField
             name="building_volume"
-            placeholder={<Trans>Volume</Trans>}
+            placeholder={i18n._('Volume')}
             validations={validationScheme['building_volume']}
             {...formInputDeps}
             value={buildingVolume}
@@ -319,11 +320,11 @@ export const MenuNewComponent = props => {
           onClick={handleBuildingSave}
           disabled={!isValid}
         >
-          <Trans>Create building</Trans>
+          {i18n._('Create building')}
         </ButtonSpinner>
 
         <Button color="primary" className={classes.abortButton} onClick={handleAbort}>
-          <Trans>Abort</Trans>
+          {i18n._('Abort')}
         </Button>
       </div>
     </form>

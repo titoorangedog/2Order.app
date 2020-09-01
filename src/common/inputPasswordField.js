@@ -1,4 +1,5 @@
-import { Trans } from '@lingui/macro';
+// import { Trans } from '@lingui/macro';
+import { i18n } from '@common/i18n-loader';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import makeStyles from '@material-ui/core/styles/makeStyles';
@@ -93,7 +94,7 @@ export const InputPasswordField = props => {
       InputProps={{
         startAdornment: (
           <InputAdornment position="start" className={classes.label}>
-            <Trans>Password</Trans>
+            {i18n._('Password')}
           </InputAdornment>
         ),
         endAdornment: (

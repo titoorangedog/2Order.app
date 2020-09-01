@@ -7,7 +7,8 @@ import { bindActionCreators } from 'redux';
 import { ActionBar } from '@features/shared/ActionBar';
 import { ActionBarMenuButton } from '@features/shared/ActionBarMenuButton';
 import { ActionBarMenuItem } from '@features/shared/ActionBarMenuItem';
-import { Trans } from '@lingui/macro';
+// import { Trans } from '@lingui/macro';
+import { i18n } from '@common/i18n-loader';
 import * as actions from '@features/menu/redux/actions';
 import { selectIsBusy, selectGetComponents } from '@features/menu/redux/selectors';
 import { Spinner } from '@features/shared/Spinner';
@@ -93,9 +94,7 @@ export const BuildingComponentsTilesComponent = props => {
       </div>
       <ActionBar position="absolute">
         <ActionBarMenuButton color="primary" label="menu" icon="IconMenu">
-          <ActionBarMenuItem icon="IconAdd">
-            <Trans>Reject</Trans>
-          </ActionBarMenuItem>
+          <ActionBarMenuItem icon="IconAdd">{i18n._('Reject')}</ActionBarMenuItem>
         </ActionBarMenuButton>
       </ActionBar>
     </>
