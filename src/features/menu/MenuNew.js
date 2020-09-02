@@ -12,7 +12,7 @@ import useForm from 'react-hook-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from './redux/actions';
-import { selectGetQCCapexObjectTypes, selectIsBusy } from './redux/selectors';
+import { selectMenuIsBusy } from './redux/selectors';
 import { useState } from 'react';
 import { SelectField } from '@common/selectField';
 import { ButtonSpinner } from '@features/shared/ButtonSpinner';
@@ -74,8 +74,7 @@ export const MenuNewComponent = props => {
   const classes = useStyles(props);
   const {
     isBusy,
-    QCCapexObjectTypes,
-    actions: { push, buildingSave },
+    actions: { push, menuSave },
   } = props;
   const {
     register,
@@ -90,7 +89,6 @@ export const MenuNewComponent = props => {
 
   const handleAbort = useCallback(() => push(boardRoutes.board), [push]);
 
-  const [QCCapexObjectType, setQCCapexObjectType] = useState('');
   const [designation, setDesignation] = useState('');
   const [egId, setEgId] = useState('');
   const [buildYear, setBuildYear] = useState('');
@@ -103,7 +101,6 @@ export const MenuNewComponent = props => {
   const [buildingInsuranceValue, setBuildingInsuranceValue] = useState('');
   const [buildingVolume, setBuildingVolume] = useState('');
 
-  const handleChangeQCCapexObjectType = useCallback(e => setQCCapexObjectType(e.target.value), []);
   const handleChangeDesignation = useCallback(e => setDesignation(e.currentTarget.value), []);
   const handleChangeEgId = useCallback(e => setEgId(e.currentTarget.value), []);
   const handleChangeBuildYear = useCallback(e => setBuildYear(e.currentTarget.value), []);
@@ -122,10 +119,9 @@ export const MenuNewComponent = props => {
   );
   const handleChangeBuildingVolume = useCallback(e => setBuildingVolume(e.currentTarget.value), []);
 
-  const handleBuildingSave = useCallback(
+  const handleMenuSave = useCallback(
     () =>
-      buildingSave({
-        qCCapexObjectTypeId: QCCapexObjectType,
+      menuSave({
         description: designation,
         egId: egId,
         buildYear: buildYear,
@@ -139,8 +135,7 @@ export const MenuNewComponent = props => {
         insuranceBuildingVolume: buildingVolume,
       }),
     [
-      buildingSave,
-      QCCapexObjectType,
+      menuSave,
       designation,
       egId,
       buildYear,
@@ -211,16 +206,6 @@ export const MenuNewComponent = props => {
     <form className={classes.container}>
       <div className={classes.sections}>
         <BuildingSection title={i18n._('Building Properties')}>
-          <SelectField
-            name="qccapexobjecttype"
-            placeholder={i18n._('QC Capex Object Type')}
-            validations={validationScheme['qccapexobjecttypeid']}
-            {...formInputDeps}
-            keyItem="id"
-            valueItem="name"
-            items={QCCapexObjectTypes}
-            onChange={handleChangeQCCapexObjectType}
-          />
           <InputField
             name="designation"
             placeholder={i18n._('Designation')}
@@ -317,7 +302,7 @@ export const MenuNewComponent = props => {
           variant="contained"
           isBusy={isBusy}
           className={classes.button}
-          onClick={handleBuildingSave}
+          onClick={handleMenuSave}
           disabled={!isValid}
         >
           {i18n._('Create building')}
@@ -334,8 +319,7 @@ export const MenuNewComponent = props => {
 /* istanbul ignore next */
 function mapStateToProps(state) {
   return {
-    QCCapexObjectTypes: selectGetQCCapexObjectTypes(state),
-    isBusy: selectIsBusy(state),
+    isBusy: selectMenuIsBusy(state),
   };
 }
 

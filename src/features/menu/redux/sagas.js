@@ -1,5 +1,5 @@
-export { switchBuildingSave } from './buildingSave';
+export { switchMenuSave } from './menuSave';
 export { switchSetTopbar } from './buildingSetTopbar';
 export { notifyErrorSagas } from './buildingNotifyError';
 export { menuCreateSectionSagas } from './menuCreateSection';
-export { menuGetSectionsSagas } from './menuGetSections';
+export { menuGetMenuSagas } from './menuGetMenu';

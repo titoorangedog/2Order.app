@@ -5,17 +5,17 @@ import { post } from '@src/services/api';
 import { push } from 'connected-react-router';
 import { boardRoutes } from '@src/features/board/routes';
 
-export function buildingSave(building) {
+export function menuSave(building) {
   return {
     type: MENU_SAVE,
     payload: building,
   };
 }
-export function* doRedirectOnBuildingSave() {
+export function* doRedirectOnMenuSave() {
   yield put(push(boardRoutes.board));
 }
 
-function* doBuildingSave({ payload }) {
+function* doMenuSave({ payload }) {
   try {
     yield call(post, 'buildings/insertbuilding', payload);
     yield put({
@@ -29,9 +29,9 @@ function* doBuildingSave({ payload }) {
   }
 }
 
-export function* switchBuildingSave() {
-  yield takeLatest(MENU_SAVE, doBuildingSave);
-  yield takeLatest(MENU_SAVE_SUCCESS, doRedirectOnBuildingSave);
+export function* switchMenuSave() {
+  yield takeLatest(MENU_SAVE, doMenuSave);
+  yield takeLatest(MENU_SAVE_SUCCESS, doRedirectOnMenuSave);
 }
 
 export const reducer = (state, action) =>

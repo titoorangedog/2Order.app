@@ -1,11 +1,11 @@
 import { reduce } from 'ramda';
-import { reducer as buildingChangeCurrent } from './buildingChangeCurrent';
-import { reducer as buildingSave } from './buildingSave';
+import { reducer as menuChangeCurrent } from './menuChangeCurrent';
+import { reducer as menuSave } from './menuSave';
 import { reducer as menuCreateSection } from './menuCreateSection';
-import { reducer as menuGetSections } from './menuGetSections';
+import { reducer as menuGetMenu } from './menuGetMenu';
 import { initialState } from './initialState';
 
-const reducers = [buildingSave, buildingChangeCurrent, menuCreateSection, menuGetSections];
+const reducers = [menuSave, menuChangeCurrent, menuCreateSection, menuGetMenu];
 
-export const buildingReducers = (state = initialState, action) =>
+export const menuReducers = (state = initialState, action) =>
   reduce((updatingState, reducer) => reducer(updatingState, action), state, reducers);

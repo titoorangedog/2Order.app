@@ -4,44 +4,35 @@ import { createSelector } from 'reselect';
 import { menuRoutes } from '../routes';
 import { selectGetClubMenus } from '@features/board/redux/selectors';
 
-const selectBuilding = state => state.building;
+const selectMenu = state => state.menu;
 
-export const selectIsBuildingNewRoute = createSelector(
+export const selectIsMenuNewRoute = createSelector(
   state => state,
-  createMatchSelector({ path: menuRoutes.buildingNew }),
+  createMatchSelector({ path: menuRoutes.menuNew }),
 );
 
-export const selectIsBuildingViewRoute = createSelector(
+export const selectIsMenuViewRoute = createSelector(
   state => state,
-  createMatchSelector({ path: menuRoutes.buildingView }),
+  createMatchSelector({ path: menuRoutes.menuView }),
 );
 
-export const selectIsBuildingComponentsViewRoute = createSelector(
-  state => state,
-  createMatchSelector({ path: menuRoutes.buildingComponentsView }),
-);
-
-export const selectCurrentBuilding = createSelector(
-  // TODO: Should not get buildings from board, it's temporary until we have 'downloadedBuildings' in shared
+export const selectCurrentMenuInfo = createSelector(
   selectGetClubMenus,
-  selectIsBuildingNewRoute,
-  selectIsBuildingViewRoute,
-  selectIsBuildingComponentsViewRoute,
-  (buildings, isNewRoute, isViewRoute, isComponentsViewRoute) => {
-    if (!!buildings) {
+  selectIsMenuNewRoute,
+  selectIsMenuViewRoute,
+  (menus, isNewRoute, isViewRoute) => {
+    if (!!menus) {
       let id = -1;
       if (!!isViewRoute && !!isViewRoute.params.id) {
         id = isViewRoute.params.id;
-      } else if (!!isComponentsViewRoute && !!isComponentsViewRoute.params.id) {
-        id = isComponentsViewRoute.params.id;
       } else if (!!isNewRoute) {
         id = 0;
       }
 
-      const currentBuilding = find(b => b.buildingId === parseInt(id), buildings);
+      const currentMenu = find(b => b.id === parseInt(id), menus);
 
-      if (!!currentBuilding) {
-        return currentBuilding;
+      if (!!currentMenu) {
+        return currentMenu;
       }
     }
 
@@ -49,13 +40,23 @@ export const selectCurrentBuilding = createSelector(
   },
 );
 
-export const selectGetCustomers = createSelector(selectBuilding, building => building.customers);
+export const selectCurrentMenu = createSelector(selectMenu, state => {
+  if (!state || !state.menu) {
+    return [];
+  }
+  return state.menu;
+});
 
-export const selectGetQCCapexObjectTypes = createSelector(
-  selectBuilding,
-  building => building.qccapexobjecttypes,
-);
+export const selectUi = createSelector(selectMenu, state => {
+  if (!state || !state.ui) {
+    return null;
+  }
+  return state.ui;
+});
 
-export const selectGetSection = createSelector(selectBuilding, building => building.inspection);
-
-export const selectIsBusy = createSelector(selectBuilding, building => building.ui.busy);
+export const selectMenuIsBusy = createSelector(selectUi, ui => {
+  if (!ui || !ui.busy) {
+    return null;
+  }
+  return ui.busy;
+});

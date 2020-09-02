@@ -3,36 +3,25 @@ import { put, select, takeLatest } from 'redux-saga/effects';
 import { i18n } from '@common/i18n-loader';
 import { sharedSetTopbar } from '@features/shared/redux/actions';
 import { selectMatchUrlPath } from '@features/shared/redux/selectors';
-import { selectIsBuildingNewRoute, selectCurrentBuilding } from './selectors';
+import { selectIsMenuNewRoute, selectCurrentMenuInfo } from './selectors';
 import { menuRoutes } from '../routes';
 
 function* doSetTopbar() {
-  const isBuildingNewRoute = yield select(selectIsBuildingNewRoute);
+  const isMenuNewRoute = yield select(selectIsMenuNewRoute);
 
-  if (!!isBuildingNewRoute) {
-    yield put(sharedSetTopbar({ title: i18n._('New building'), back: true }));
+  if (!!isMenuNewRoute) {
+    yield put(sharedSetTopbar({ title: i18n._('New Menu'), back: true }));
   } else {
-    const building = yield select(selectCurrentBuilding);
-    if (!!building) {
-      const isRouteBuildingView = yield select(
-        selectMatchUrlPath(menuRoutes.menuView.replace(':id', building.buildingId)),
-      );
-      const isRouteBuildingComponentsView = yield select(
-        selectMatchUrlPath(menuRoutes.buildingComponentsView.replace(':id', building.buildingId)),
+    const currentMenu = yield select(selectCurrentMenuInfo);
+    if (!!currentMenu) {
+      const isRouteMenuView = yield select(
+        selectMatchUrlPath(menuRoutes.menuView.replace(':id', currentMenu.id)),
       );
 
-      if (!!isRouteBuildingView) {
+      if (!!isRouteMenuView) {
         yield put(
           sharedSetTopbar({
-            title: `${building.buildingId} - ${building.qcCapexObjectType}`,
-            back: true,
-          }),
-        );
-      } else if (!!isRouteBuildingComponentsView) {
-        yield put(
-          sharedSetTopbar({
-            title: `${i18n._('Components')}`,
-            subtitle: `${building.buildingId} - ${building.qcCapexObjectType}`,
+            title: `${currentMenu.id} - ${currentMenu.name}`,
             back: true,
           }),
         );

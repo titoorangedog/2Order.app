@@ -6,7 +6,7 @@ import { persistReducer } from 'redux-persist';
 import { sharedReducers } from '../features/shared/redux/reducers';
 import { authReducers } from '../features/auth/redux/reducers';
 import { boardReducers } from '../features/board/redux/reducers';
-import { buildingReducers } from '../features/menu/redux/reducers';
+import { menuReducers } from '../features/menu/redux/reducers';
 import { profileReducers } from '../features/profile/redux/reducers';
 
 const basePersistConfig = {
@@ -29,7 +29,7 @@ const reducerMap = {
   shared: persistReducer(sharedPersistConfig, sharedReducers),
   auth: authReducers,
   board: persistReducer(boardPersistConfig, boardReducers),
-  building: buildingReducers,
+  menu: menuReducers,
   profile: profileReducers,
 };
 

@@ -1,57 +1,53 @@
 import { post } from '@src/services/api';
 import produce from 'immer';
 import { call, select, put, takeLatest } from 'redux-saga/effects';
-import {
-  MENU_CREATE_SECTION,
-  MENU_CREATE_SECTION_ERROR,
-  MENU_CREATE_SECTION_SUCCESS,
-} from './constants';
-import { selectCurrentBuilding } from './selectors';
+import { MENU_CREATE_MENU, MENU_CREATE_MENU_ERROR, MENU_CREATE_MENU_SUCCESS } from './constants';
+import { selectCurrentMenuInfo } from './selectors';
 
 export function menuCreateSection() {
   return {
-    type: MENU_CREATE_SECTION,
+    type: MENU_CREATE_MENU,
   };
 }
 
 function* doMenuCreateSection() {
   try {
-    const building = yield select(selectCurrentBuilding);
-    if (!!building) {
+    const menu = yield select(selectCurrentMenuInfo);
+    if (!!menu) {
       yield call(post, 'inspections/insertinspection', {
-        buildingId: building.buildingId,
+        menuId: menu.id,
       });
       yield put({
-        type: MENU_CREATE_SECTION_SUCCESS,
+        type: MENU_CREATE_MENU_SUCCESS,
       });
     } else {
       yield put({
-        type: MENU_CREATE_SECTION_ERROR,
+        type: MENU_CREATE_MENU_ERROR,
         payload: "Error: Current building doesn't exists.",
       });
     }
   } catch (error) {
     yield put({
-      type: MENU_CREATE_SECTION_ERROR,
+      type: MENU_CREATE_MENU_ERROR,
       payload: error.message,
     });
   }
 }
 
 export function* menuCreateSectionSagas() {
-  yield takeLatest(MENU_CREATE_SECTION, doMenuCreateSection);
+  yield takeLatest(MENU_CREATE_MENU, doMenuCreateSection);
 }
 
 export const reducer = (state, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case MENU_CREATE_SECTION:
+      case MENU_CREATE_MENU:
         draft.ui.busy = true;
         break;
-      case MENU_CREATE_SECTION_SUCCESS:
+      case MENU_CREATE_MENU_SUCCESS:
         draft.ui.busy = false;
         break;
-      case MENU_CREATE_SECTION_ERROR:
+      case MENU_CREATE_MENU_ERROR:
         draft.ui.busy = false;
         break;
       default:
