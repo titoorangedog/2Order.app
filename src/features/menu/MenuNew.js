@@ -1,4 +1,4 @@
-import { BuildingSection } from '@common/buildingSection';
+import { MenuVoice } from '@src/common/menuVoice';
 import { InputField } from '@common/inputField';
 import { boardRoutes } from '@features/board/routes';
 import * as sharedActions from '@features/shared/redux/actions';
@@ -7,15 +7,15 @@ import { i18n } from '@common/i18n-loader';
 import Button from '@material-ui/core/Button';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { routerActions } from 'connected-react-router';
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import useForm from 'react-hook-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from './redux/actions';
 import { selectMenuIsBusy } from './redux/selectors';
-import { useState } from 'react';
-import { SelectField } from '@common/selectField';
 import { ButtonSpinner } from '@features/shared/ButtonSpinner';
+import { KeyboardTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -89,114 +89,33 @@ export const MenuNewComponent = props => {
 
   const handleAbort = useCallback(() => push(boardRoutes.board), [push]);
 
-  const [designation, setDesignation] = useState('');
-  const [egId, setEgId] = useState('');
-  const [buildYear, setBuildYear] = useState('');
-  const [street, setStreet] = useState('');
-  const [houseNumber, setHouseNumber] = useState('');
-  const [streetSupplement, setStreetSupplement] = useState('');
-  const [zipCode, setZipCode] = useState('');
-  const [city, setCity] = useState('');
-  const [indexYear, setIndexYear] = useState('');
-  const [buildingInsuranceValue, setBuildingInsuranceValue] = useState('');
-  const [buildingVolume, setBuildingVolume] = useState('');
+  const [menuName, setMenuName] = useState('');
+  const [startTime, setStartTime] = React.useState(new Date());
 
-  const handleChangeDesignation = useCallback(e => setDesignation(e.currentTarget.value), []);
-  const handleChangeEgId = useCallback(e => setEgId(e.currentTarget.value), []);
-  const handleChangeBuildYear = useCallback(e => setBuildYear(e.currentTarget.value), []);
-  const handleChangeStreet = useCallback(e => setStreet(e.currentTarget.value), []);
-  const handleChangeHouseNumber = useCallback(e => setHouseNumber(e.currentTarget.value), []);
-  const handleChangeStreetSupplement = useCallback(
-    e => setStreetSupplement(e.currentTarget.value),
-    [],
-  );
-  const handleChangeZipCode = useCallback(e => setZipCode(e.currentTarget.value), []);
-  const handleChangeCity = useCallback(e => setCity(e.currentTarget.value), []);
-  const handleChangeIndexYear = useCallback(e => setIndexYear(e.currentTarget.value), []);
-  const handleChangeBuildingInsuranceValue = useCallback(
-    e => setBuildingInsuranceValue(e.currentTarget.value),
-    [],
-  );
-  const handleChangeBuildingVolume = useCallback(e => setBuildingVolume(e.currentTarget.value), []);
+  const handleChangeStartTime = date => {
+    setStartTime(date);
+  };
+
+  const handleChangeMenuName = useCallback(e => setMenuName(e.currentTarget.value), []);
 
   const handleMenuSave = useCallback(
     () =>
       menuSave({
-        description: designation,
-        egId: egId,
-        buildYear: buildYear,
-        street: street,
-        houseNumber: houseNumber,
-        streetSupplement: streetSupplement,
-        zipCode: zipCode,
-        city: city,
-        insuranceIndexYear: indexYear,
-        insuranceValue: buildingInsuranceValue,
-        insuranceBuildingVolume: buildingVolume,
+        name: menuName,
+        startTime: `${startTime.getHours()}:${startTime.getMinutes()}`,
       }),
-    [
-      menuSave,
-      designation,
-      egId,
-      buildYear,
-      street,
-      houseNumber,
-      streetSupplement,
-      zipCode,
-      city,
-      indexYear,
-      buildingInsuranceValue,
-      buildingVolume,
-    ],
+    [menuSave, menuName, startTime],
   );
 
   const validationScheme = useMemo(
     () => ({
-      qccapexobjecttypeid: {
+      menuName: {
         required: true,
-        integer: true,
+        length: { min: 3, max: 255 },
       },
-      designation: {
+      startTime: {
         required: true,
         length: { max: 50 },
-      },
-      buildYear: {
-        required: true,
-        integer: true,
-        length: { min: 4, max: 4 },
-        range: { min: 1000, max: 2999 },
-      },
-      street: {
-        required: true,
-        length: { max: 50 },
-      },
-      house_number: {
-        required: true,
-        length: { max: 10 },
-      },
-      zip_code: {
-        required: true,
-        integer: true,
-        length: { min: 4, max: 4 },
-        range: { min: 1000, max: 9999 },
-      },
-      city: {
-        required: true,
-      },
-      index_year: {
-        required: true,
-        integer: true,
-        length: { min: 4, max: 4 },
-        range: { min: 1000, max: 2999 },
-      },
-      building_insurance_value: {
-        required: true,
-        length: { max: 8 },
-        floating: { decimals: 2 },
-      },
-      building_volume: {
-        required: true,
-        integer: true,
       },
     }),
     [],
@@ -205,96 +124,29 @@ export const MenuNewComponent = props => {
   return (
     <form className={classes.container}>
       <div className={classes.sections}>
-        <BuildingSection title={i18n._('Building Properties')}>
+        <MenuVoice title={i18n._('Menu name')}>
           <InputField
-            name="designation"
-            placeholder={i18n._('Designation')}
-            validations={validationScheme['designation']}
+            name="menuName"
+            placeholder={i18n._('Type a valid menu name')}
+            validations={validationScheme['menuName']}
             {...formInputDeps}
-            value={designation}
-            onChange={handleChangeDesignation}
+            value={menuName}
+            onChange={handleChangeMenuName}
           />
-          <InputField
-            name="egid"
-            placeholder={i18n._('EGID')}
-            value={egId}
-            onChange={handleChangeEgId}
-          />
-          <InputField
-            name="buildYear"
-            placeholder={i18n._('Year of construction')}
-            validations={validationScheme['buildYear']}
-            {...formInputDeps}
-            value={buildYear}
-            onChange={handleChangeBuildYear}
-          />
-        </BuildingSection>
-        <BuildingSection title={i18n._('Address')}>
-          <InputField
-            name="street"
-            placeholder={i18n._('Street')}
-            validations={validationScheme['street']}
-            {...formInputDeps}
-            value={street}
-            onChange={handleChangeStreet}
-          />
-          <InputField
-            name="house_number"
-            placeholder={i18n._('House number')}
-            validations={validationScheme['house_number']}
-            {...formInputDeps}
-            value={houseNumber}
-            onChange={handleChangeHouseNumber}
-          />
-          <InputField
-            name="street_supplement"
-            placeholder={i18n._('Street supplement')}
-            value={streetSupplement}
-            onChange={handleChangeStreetSupplement}
-          />
-          <InputField
-            name="zip_code"
-            placeholder={i18n._('ZIP Code')}
-            validations={validationScheme['zip_code']}
-            {...formInputDeps}
-            value={zipCode}
-            onChange={handleChangeZipCode}
-          />
-          <InputField
-            name="city"
-            placeholder={i18n._('City')}
-            validations={validationScheme['city']}
-            {...formInputDeps}
-            value={city}
-            onChange={handleChangeCity}
-          />
-        </BuildingSection>
-        <BuildingSection title={i18n._('Building Insurance')}>
-          <InputField
-            name="index_year"
-            placeholder={i18n._('Index Year')}
-            validations={validationScheme['index_year']}
-            {...formInputDeps}
-            value={indexYear}
-            onChange={handleChangeIndexYear}
-          />
-          <InputField
-            name="building_insurance_value"
-            placeholder={i18n._('Value')}
-            validations={validationScheme['building_insurance_value']}
-            {...formInputDeps}
-            value={buildingInsuranceValue}
-            onChange={handleChangeBuildingInsuranceValue}
-          />
-          <InputField
-            name="building_volume"
-            placeholder={i18n._('Volume')}
-            validations={validationScheme['building_volume']}
-            {...formInputDeps}
-            value={buildingVolume}
-            onChange={handleChangeBuildingVolume}
-          />
-        </BuildingSection>
+        </MenuVoice>
+        <MenuVoice title={i18n._('Start Time')}>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <KeyboardTimePicker
+              margin="normal"
+              id="time-picker"
+              value={startTime}
+              onChange={handleChangeStartTime}
+              KeyboardButtonProps={{
+                'aria-label': 'change time',
+              }}
+            />
+          </MuiPickersUtilsProvider>
+        </MenuVoice>
       </div>
       <div className={classes.actionContainer}>
         <ButtonSpinner
@@ -305,7 +157,7 @@ export const MenuNewComponent = props => {
           onClick={handleMenuSave}
           disabled={!isValid}
         >
-          {i18n._('Create building')}
+          {i18n._('Create Menu')}
         </ButtonSpinner>
 
         <Button color="primary" className={classes.abortButton} onClick={handleAbort}>

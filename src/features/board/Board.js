@@ -61,8 +61,15 @@ export const BoardComponent = props => {
   } = props;
 
   const handleNavigateToView = useCallback(
-    building => {
-      push(menuRoutes.menuView.replace(':id', building.id));
+    menu => {
+      push(menuRoutes.menuView.replace(':id', menu.id));
+    },
+    [push],
+  );
+
+  const handleNavigateToDelete = useCallback(
+    menu => {
+      push(menuRoutes.menuDelete.replace(':id', menu.id));
     },
     [push],
   );
@@ -115,7 +122,8 @@ export const BoardComponent = props => {
                     menuName={b.name}
                     street={b.street}
                     withHighlight={true}
-                    onClick={handleNavigateToView}
+                    onNavigateClick={handleNavigateToView}
+                    onDeleteClick={handleNavigateToDelete}
                   />
                 </SwipeableDeleteUndoComponent>
               </CSSTransition>

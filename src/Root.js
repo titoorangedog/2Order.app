@@ -19,7 +19,6 @@ export function Root() {
               <ConnectedRouter history={history}>
                 <App></App>
               </ConnectedRouter>
-
               <ReduxToastr
                 timeOut={4000}
                 newestOnTop={true}

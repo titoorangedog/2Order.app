@@ -81,10 +81,12 @@ const ModalActionsComponent = props => {
     sharedModalActionsHide();
   }, [sharedModalActionsHide]);
 
-  const handleChange = (_, newValue) => {
-    actions[newValue].command();
-    handleClose();
-  };
+  const handleChange = useCallback(
+    (_, newValue) => {
+      actions[newValue].command();
+    },
+    [actions],
+  );
 
   return (
     <Dialog
@@ -105,7 +107,7 @@ const ModalActionsComponent = props => {
           </div>
         </div>
         <div className={classes.footer}>
-          <BottomNavigation className={classes.bottomNavigation} onChange={handleChange} showLabels>
+          <BottomNavigation className={classes.bottomNavigation} onClick={handleChange} showLabels>
             {actions.map((action, index) => (
               <BottomNavigationAction
                 key={'action-' + index}

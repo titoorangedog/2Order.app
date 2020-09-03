@@ -1,12 +1,16 @@
 import { post } from '@src/services/api';
 import produce from 'immer';
 import { call, select, put, takeLatest } from 'redux-saga/effects';
-import { MENU_CREATE_MENU, MENU_CREATE_MENU_ERROR, MENU_CREATE_MENU_SUCCESS } from './constants';
+import {
+  MENU_CREATE_SECTION,
+  MENU_CREATE_SECTION_ERROR,
+  MENU_CREATE_SECTION_SUCCESS,
+} from './constants';
 import { selectCurrentMenuInfo } from './selectors';
 
 export function menuCreateSection() {
   return {
-    type: MENU_CREATE_MENU,
+    type: MENU_CREATE_SECTION,
   };
 }
 
@@ -18,36 +22,36 @@ function* doMenuCreateSection() {
         menuId: menu.id,
       });
       yield put({
-        type: MENU_CREATE_MENU_SUCCESS,
+        type: MENU_CREATE_SECTION_SUCCESS,
       });
     } else {
       yield put({
-        type: MENU_CREATE_MENU_ERROR,
-        payload: "Error: Current building doesn't exists.",
+        type: MENU_CREATE_SECTION_ERROR,
+        payload: "Error: Current Section doesn't exists.",
       });
     }
   } catch (error) {
     yield put({
-      type: MENU_CREATE_MENU_ERROR,
+      type: MENU_CREATE_SECTION_ERROR,
       payload: error.message,
     });
   }
 }
 
 export function* menuCreateSectionSagas() {
-  yield takeLatest(MENU_CREATE_MENU, doMenuCreateSection);
+  yield takeLatest(MENU_CREATE_SECTION, doMenuCreateSection);
 }
 
 export const reducer = (state, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case MENU_CREATE_MENU:
+      case MENU_CREATE_SECTION:
         draft.ui.busy = true;
         break;
-      case MENU_CREATE_MENU_SUCCESS:
+      case MENU_CREATE_SECTION_SUCCESS:
         draft.ui.busy = false;
         break;
-      case MENU_CREATE_MENU_ERROR:
+      case MENU_CREATE_SECTION_ERROR:
         draft.ui.busy = false;
         break;
       default:

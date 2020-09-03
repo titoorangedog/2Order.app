@@ -1,4 +1,4 @@
-import { sortBy, filter } from 'ramda';
+import { sortBy } from 'ramda';
 import { createSelector } from 'reselect';
 
 const selectBoard = state => state.board;

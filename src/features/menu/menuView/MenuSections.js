@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(0, 3),
     position: 'relative',
   },
-  inspection: {
+  section: {
     display: 'grid',
     gridTemplateRows: 'auto auto',
     gridTemplateAreas: '"header" "content"',
@@ -116,7 +116,6 @@ const useStyles = makeStyles(theme => ({
 export const MenuSectionsComponent = props => {
   const {
     menu,
-    currentMenu,
     isBusy,
     actions: { push, menuCreateSection, sharedModalActionsShow },
   } = props;
@@ -126,9 +125,11 @@ export const MenuSectionsComponent = props => {
     menuCreateSection();
   }, [menuCreateSection]);
 
+  const handleNavigateToAddSection = useCallback(() => push(menuRoutes.menuNew), [push]);
+
   const handleNavigateToComponentsView = useCallback(
-    () => push(menuRoutes.menuComponentsView.replace(':id', currentMenu.id)),
-    [push, currentMenu],
+    () => push(menuRoutes.menuComponentsView.replace(':id', menu.id)),
+    [push, menu],
   );
 
   const handleDeleteSection = useCallback(() => {
@@ -152,7 +153,7 @@ export const MenuSectionsComponent = props => {
     <>
       {!!menu || isBusy ? (
         <div className={classes.container}>
-          <div className={classes.inspection}>
+          <div className={classes.section}>
             <div className={clsx(classes.sectionHeaderInfo, classes.sectionHeaderCommon)}>
               <div className={classes.sectionHeaderTitle}>{i18n._('Menu Info')}</div>
             </div>
@@ -192,7 +193,7 @@ export const MenuSectionsComponent = props => {
               color="primary"
               label="add"
               icon="IconPlusSign"
-              onClick={handleAddSection}
+              onClick={handleNavigateToAddSection}
             />
           </ActionBar>
         </div>

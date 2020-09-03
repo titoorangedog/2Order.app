@@ -1,55 +1,55 @@
 import produce from 'immer';
 import { call, put, takeEvery } from 'redux-saga/effects';
 
-import { BOARD_REMOVE_MENU, BOARD_REMOVE_MENU_SUCCESS, BOARD_REMOVE_MENU_ERROR } from './constants';
+import { BOARD_DELETE_MENU, BOARD_DELETE_MENU_SUCCESS, BOARD_DELETE_MENU_ERROR } from './constants';
 import { filter } from 'ramda';
-import { post } from '@src/services/api';
+import { deleteById } from '@src/services/api';
 
-export function boardRemoveMenu(building) {
+export function boardRemoveMenu(menu) {
   return {
-    type: BOARD_REMOVE_MENU,
-    payload: building,
+    type: BOARD_DELETE_MENU,
+    payload: menu,
   };
 }
 
-function* doBoardRemoveMenu({ payload: building }) {
+function* doBoardRemoveMenu({ payload: menu }) {
   try {
-    if (!!building) {
-      yield call(post, `board/unbookmark`, { buildingId: building.buildingId });
+    if (!!menu) {
+      yield call(deleteById, `clubs/1/menu`, menu.id);
       yield put({
-        type: BOARD_REMOVE_MENU_SUCCESS,
-        payload: building,
+        type: BOARD_DELETE_MENU_SUCCESS,
+        payload: menu,
       });
     } else {
       yield put({
-        type: BOARD_REMOVE_MENU_ERROR,
+        type: BOARD_DELETE_MENU_ERROR,
         payload: 'No menu provided',
       });
     }
   } catch (error) {
     yield put({
-      type: BOARD_REMOVE_MENU_ERROR,
+      type: BOARD_DELETE_MENU_ERROR,
       payload: error.message,
     });
   }
 }
 
 export function* removeMenuSagas() {
-  yield takeEvery(BOARD_REMOVE_MENU, doBoardRemoveMenu);
+  yield takeEvery(BOARD_DELETE_MENU, doBoardRemoveMenu);
 }
 
 export const reducer = (state, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case BOARD_REMOVE_MENU:
-        draft.ui.busy.removingMenu[action.payload.id] = true;
+      case BOARD_DELETE_MENU:
+        draft.ui.busy.loading = true;
         break;
-      case BOARD_REMOVE_MENU_SUCCESS:
+      case BOARD_DELETE_MENU_SUCCESS:
         draft.clubMenus = filter(b => b.id !== action.payload.id, draft.clubMenus);
-        draft.ui.busy.removingMenu[action.payload.id] = false;
+        draft.ui.busy.loading = false;
         break;
-      case BOARD_REMOVE_MENU_ERROR:
-        draft.ui.busy.removingMenu[action.payload.id] = false;
+      case BOARD_DELETE_MENU_ERROR:
+        draft.ui.busy.loading = false;
         break;
       default:
         return state;

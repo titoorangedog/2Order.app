@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export const BuildingSection = props => {
+export const MenuVoice = props => {
   const classes = useStyles(props);
   const { title, children } = props;
 

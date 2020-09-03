@@ -8,7 +8,7 @@ import { authGetToken, authIsAuthenticated } from './auth';
 import { extractErrorMessage } from './extractErrorMessage';
 
 const host = 'https://to-order.herokuapp.com/api/v1';
-const baseURL = '/api/v1';
+// const baseURL = '/api/v1';
 
 async function call(httpCall, mustBeAuthenticated) {
   let headers = {};
@@ -22,7 +22,10 @@ async function call(httpCall, mustBeAuthenticated) {
     }
 
     const token = await authGetToken();
-    headers = { Authorization: `Bearer ${token}`, accept: '*/*' };
+    headers = {
+      Authorization: `Bearer ${token}`,
+      Accept: '*/*',
+    };
   }
 
   try {

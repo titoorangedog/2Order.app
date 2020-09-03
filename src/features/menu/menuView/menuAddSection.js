@@ -94,7 +94,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export const MenuViewSection = props => {
+export const MenuAddSection = props => {
   const classes = useStyles(props);
   const { section, onEditSectionClick, onDeleteSectionClick } = props;
 

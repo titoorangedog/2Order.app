@@ -1,12 +1,12 @@
 import { boardRoutes } from '@features/board/routes';
-import { authenticationLogin, setSession } from '@services/auth';
+import { setSession } from '@services/auth';
 import { push } from 'connected-react-router';
 import produce from 'immer';
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { authReset } from './authReset';
 import { AUTH_LOGIN, AUTH_LOGIN_ERROR, AUTH_LOGIN_SUCCESS } from './constants';
 import { selectPassword, selectUsername } from './selectors';
-import { get, post, login } from '@services/api';
+import { login } from '@services/api';
 export function authLogin() {
   return {
     type: AUTH_LOGIN,
@@ -21,8 +21,6 @@ function* doLogin() {
     const result = yield call(login, username, password);
     console.log('doLogin result', result);
     yield setSession(result);
-
-    // yield call(authenticationLogin, username, password);
 
     yield put({
       type: AUTH_LOGIN_SUCCESS,

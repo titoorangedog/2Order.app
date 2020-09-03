@@ -1,14 +1,14 @@
 import produce from 'immer';
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, takeLatest } from 'redux-saga/effects';
 import { MENU_SAVE, MENU_SAVE_SUCCESS, MENU_SAVE_ERROR } from './constants';
-import { post } from '@src/services/api';
 import { push } from 'connected-react-router';
+import { put } from '@src/services/api';
 import { boardRoutes } from '@src/features/board/routes';
 
-export function menuSave(building) {
+export function menuSave(menu) {
   return {
     type: MENU_SAVE,
-    payload: building,
+    payload: menu,
   };
 }
 export function* doRedirectOnMenuSave() {
@@ -17,7 +17,14 @@ export function* doRedirectOnMenuSave() {
 
 function* doMenuSave({ payload }) {
   try {
-    yield call(post, 'buildings/insertbuilding', payload);
+    console.log('payload: ', payload);
+    //   const json = `{
+    //     "id": 8,
+    //     "name" : "Menu 2",
+    //     "startTime" : "21:00"
+    // }`;
+
+    yield call(put, `clubs/1/menu`, payload);
     yield put({
       type: MENU_SAVE_SUCCESS,
     });
