@@ -16,6 +16,7 @@ import { selectMenuIsBusy } from './redux/selectors';
 import { ButtonSpinner } from '@features/shared/ButtonSpinner';
 import { KeyboardTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import { Spinner } from '@features/shared/Spinner';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -99,12 +100,14 @@ export const MenuNewComponent = props => {
   const handleChangeMenuName = useCallback(e => setMenuName(e.currentTarget.value), []);
 
   const handleMenuSave = useCallback(
-    () =>
+    event => {
+      console.log('handleMenuSave');
       menuSave({
         name: menuName,
         startTime: `${startTime.getHours()}:${startTime.getMinutes()}`,
-      }),
-    [menuSave, menuName, startTime],
+      });
+    },
+    [menuName, menuSave, startTime],
   );
 
   const validationScheme = useMemo(
@@ -120,7 +123,9 @@ export const MenuNewComponent = props => {
     }),
     [],
   );
-
+  if (isBusy) {
+    return <Spinner />;
+  }
   return (
     <form className={classes.container}>
       <div className={classes.sections}>

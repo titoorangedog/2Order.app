@@ -50,16 +50,16 @@ export async function login(username, password) {
   return await call(async headers => await Axios.post(`${host}/login`, data));
 }
 
-export async function post(controller, data, mustBeAuthenticated = true) {
+export async function put(controller, data, mustBeAuthenticated = true) {
   return await call(
-    async headers => await Axios.post(`${host}/${controller}`, data, { headers }),
+    async headers => await Axios.put(`${host}/${controller}`, data, { headers }),
     mustBeAuthenticated,
   );
 }
 
-export async function put(controller, data, mustBeAuthenticated = true) {
+export async function post(controller, data, mustBeAuthenticated = true) {
   return await call(
-    async headers => await Axios.put(`${host}/${controller}`, data, { headers }),
+    async headers => await Axios.post(`${host}/${controller}`, data, { headers }),
     mustBeAuthenticated,
   );
 }

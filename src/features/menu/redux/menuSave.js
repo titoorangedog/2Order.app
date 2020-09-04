@@ -1,8 +1,8 @@
 import produce from 'immer';
-import { call, takeLatest } from 'redux-saga/effects';
+import { call, takeLatest, put } from 'redux-saga/effects';
 import { MENU_SAVE, MENU_SAVE_SUCCESS, MENU_SAVE_ERROR } from './constants';
 import { push } from 'connected-react-router';
-import { put } from '@src/services/api';
+import { put as SavePut } from '@src/services/api';
 import { boardRoutes } from '@src/features/board/routes';
 
 export function menuSave(menu) {
@@ -17,14 +17,7 @@ export function* doRedirectOnMenuSave() {
 
 function* doMenuSave({ payload }) {
   try {
-    console.log('payload: ', payload);
-    //   const json = `{
-    //     "id": 8,
-    //     "name" : "Menu 2",
-    //     "startTime" : "21:00"
-    // }`;
-
-    yield call(put, `clubs/1/menu`, payload);
+    yield call(SavePut, `clubs/1/menu`, payload);
     yield put({
       type: MENU_SAVE_SUCCESS,
     });

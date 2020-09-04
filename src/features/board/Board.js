@@ -3,9 +3,6 @@ import { EmptyContent } from '@common/emptyContent';
 import { menuRoutes } from '@features/menu/routes';
 import { ActionBar } from '@features/shared/ActionBar';
 import { ActionBarButton } from '@features/shared/ActionBarButton';
-import { ActionBarMenuButton } from '@features/shared/ActionBarMenuButton';
-import { ActionBarMenuItem } from '@features/shared/ActionBarMenuItem';
-import { ActionBarMenuDivider } from '@features/shared/ActionBarMenuDivider';
 import * as sharedActions from '@features/shared/redux/actions';
 import { Spinner } from '@features/shared/Spinner';
 import makeStyles from '@material-ui/core/styles/makeStyles';
@@ -16,7 +13,6 @@ import { bindActionCreators } from 'redux';
 import * as actions from './redux/actions';
 import { selectGetClubMenus, selectIsGetBoardBusy } from './redux/selectors';
 import { i18n } from '@common/i18n-loader';
-import { Icon } from '@common/icon';
 import { SwipeableDeleteUndoComponent } from '@src/common/swipeableDeleteUndoComponent';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import QrReader from 'react-qr-reader';
@@ -57,7 +53,7 @@ export const BoardComponent = props => {
   const {
     clubMenus,
     isGetBoardBusy,
-    actions: { push, sharedModalActionsShow, sharedModalNotImplementedShow, boardGetClubMenus },
+    actions: { push, boardGetClubMenus },
   } = props;
 
   const handleNavigateToView = useCallback(
@@ -74,8 +70,6 @@ export const BoardComponent = props => {
     [push],
   );
 
-  const handleNavigateToBuildingNew = useCallback(() => push(menuRoutes.menuNew), [push]);
-
   const handleScan = data => {
     if (data) {
       console.log(data);
@@ -85,21 +79,12 @@ export const BoardComponent = props => {
     console.error(err);
   };
 
-  const handleAddBuilding = useCallback(() => {
-    sharedModalActionsShow({
-      icon: <Icon name="IconInformation" paletteColor="modal.default" size="28" />,
-      title: i18n._('Make a choice'),
-      message: i18n._(
-        'Do you want to create a new building (+) or do you want to search the existing buildings?',
-      ),
-      actions: [
-        {
-          icon: <Icon name="IconPlusSign" paletteColor="modal.default" />,
-          command: handleNavigateToBuildingNew,
-        },
-      ],
-    });
-  }, [sharedModalActionsShow, handleNavigateToBuildingNew]);
+  const handleAddMenu = useCallback(
+    menu => {
+      push(menuRoutes.menuNew);
+    },
+    [push],
+  );
 
   const handleRefreshBoard = useCallback(() => {
     boardGetClubMenus();
@@ -149,13 +134,8 @@ export const BoardComponent = props => {
       )}
 
       <ActionBar>
-        <ActionBarButton
-          color="primary"
-          label="add"
-          icon="IconPlusSign"
-          onClick={handleAddBuilding}
-        />
-        <ActionBarMenuButton color="primary" label="menu" icon="IconMenu">
+        <ActionBarButton color="primary" label="add" icon="IconPlusSign" onClick={handleAddMenu} />
+        {/* <ActionBarMenuButton color="primary" label="menu" icon="IconMenu">
           <ActionBarMenuItem icon="IconPlusSign" onClick={sharedModalNotImplementedShow}>
             Add new Item
           </ActionBarMenuItem>
@@ -166,7 +146,7 @@ export const BoardComponent = props => {
           <ActionBarMenuItem icon="IconInformation" onClick={handleRefreshBoard}>
             Refresh board
           </ActionBarMenuItem>
-        </ActionBarMenuButton>
+        </ActionBarMenuButton> */}
       </ActionBar>
     </>
   );

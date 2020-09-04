@@ -81,12 +81,10 @@ const ModalActionsComponent = props => {
     sharedModalActionsHide();
   }, [sharedModalActionsHide]);
 
-  const handleChange = useCallback(
-    (_, newValue) => {
-      actions[newValue].command();
-    },
-    [actions],
-  );
+  const handleChange = (_, newValue) => {
+    actions[newValue].command();
+    handleClose();
+  };
 
   return (
     <Dialog
