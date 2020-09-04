@@ -18,7 +18,11 @@ function* doSetTopbar() {
         selectMatchUrlPath(menuRoutes.menuView.replace(':id', currentMenu.id)),
       );
 
-      if (!!isRouteMenuView) {
+      const isRouteEditView = yield select(
+        selectMatchUrlPath(menuRoutes.menuEdit.replace(':id', currentMenu.id)),
+      );
+
+      if (!!isRouteMenuView || !!isRouteEditView) {
         yield put(
           sharedSetTopbar({
             title: `${currentMenu.id} - ${currentMenu.name}`,

@@ -16,6 +16,11 @@ export const selectIsMenuViewRoute = createSelector(
   createMatchSelector({ path: menuRoutes.menuView }),
 );
 
+export const selectIsMenuEditRoute = createSelector(
+  state => state,
+  createMatchSelector({ path: menuRoutes.menuEdit }),
+);
+
 export const selectIsMenuDeleteRoute = createSelector(
   state => state,
   createMatchSelector({ path: menuRoutes.menuDelete }),
@@ -26,13 +31,16 @@ export const selectCurrentMenuInfo = createSelector(
   selectIsMenuNewRoute,
   selectIsMenuViewRoute,
   selectIsMenuDeleteRoute,
-  (menus, isNewRoute, isViewRoute, isDeleteRoute) => {
+  selectIsMenuEditRoute,
+  (menus, isNewRoute, isViewRoute, isDeleteRoute, isEditRoute) => {
     if (!!menus) {
       let id = -1;
       if (!!isViewRoute && !!isViewRoute.params.id) {
         id = isViewRoute.params.id;
       } else if (!!isDeleteRoute && !!isDeleteRoute.params.id) {
         id = isDeleteRoute.params.id;
+      } else if (!!isEditRoute && !!isEditRoute.params.id) {
+        id = isEditRoute.params.id;
       } else if (!!isNewRoute) {
         id = 0;
       }

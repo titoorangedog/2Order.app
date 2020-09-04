@@ -6,17 +6,18 @@ import React, { useCallback, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from './redux/actions';
-import { selectMenuIsBusy } from './redux/selectors';
 import { MenuFields } from './MenuFields';
+import { selectCurrentMenu, selectMenuIsBusy } from './redux/selectors';
 
-export const MenuNewComponent = props => {
+export const MenuEditComponent = props => {
   const {
     isBusy,
+    currentMenu,
     actions: { push, menuSave },
   } = props;
 
-  const [menuName, setMenuNameValue] = useState('');
-  const [startTime, setStartTimeValue] = useState(new Date());
+  const [menuName, setMenuNameValue] = useState(currentMenu.name);
+  const [startTime, setStartTimeValue] = useState(new Date(`1974/10/10 ${currentMenu.startTime}`));
 
   const handleAbort = useCallback(() => push(boardRoutes.board), [push]);
 
@@ -24,12 +25,14 @@ export const MenuNewComponent = props => {
     event => {
       const hours = (startTime.getHours() < 10 ? '0' : '') + startTime.getHours();
       const minutes = (startTime.getMinutes() < 10 ? '0' : '') + startTime.getMinutes();
+      const id = currentMenu.id;
       menuSave({
+        id: id,
         name: menuName,
         startTime: `${hours}:${minutes}`,
       });
     },
-    [menuName, menuSave, startTime],
+    [currentMenu.id, menuName, menuSave, startTime],
   );
 
   const handleChangeField = useCallback(e => {
@@ -58,6 +61,7 @@ export const MenuNewComponent = props => {
 /* istanbul ignore next */
 function mapStateToProps(state) {
   return {
+    currentMenu: selectCurrentMenu(state),
     isBusy: selectMenuIsBusy(state),
   };
 }
@@ -69,4 +73,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export const MenuNew = connect(mapStateToProps, mapDispatchToProps)(MenuNewComponent);
+export const MenuEdit = connect(mapStateToProps, mapDispatchToProps)(MenuEditComponent);

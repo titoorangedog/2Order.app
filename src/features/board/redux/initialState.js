@@ -1,5 +1,6 @@
 export const initialState = {
   clubMenus: null,
+  selectedId: null,
   ui: {
     busy: {
       loading: false,

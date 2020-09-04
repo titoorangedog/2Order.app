@@ -2,6 +2,7 @@ import * as authActions from '@features/auth/redux/actions';
 import { Board } from '@features/board/Board';
 import { boardRoutes } from '@features/board/routes';
 import { MenuNew } from '@features/menu/MenuNew';
+import { MenuEdit } from '@features/menu/MenuEdit';
 import { MenuDelete } from '@features/menu/MenuDelete';
 import { MenuView } from '@features/menu/MenuView';
 import { menuRoutes } from '@features/menu/routes';
@@ -50,6 +51,7 @@ const MasterComponent = props => {
           <Switch>
             <Route path={boardRoutes.board} component={Board} />
             <Route path={menuRoutes.menuNew} component={MenuNew} />
+            <Route path={menuRoutes.menuEdit} component={MenuEdit} />
             <Route path={menuRoutes.menuDelete} component={MenuDelete} />
             <Route path={menuRoutes.menuView} component={MenuView} />
             <Route path={profileRoutes.profile} component={Profile} />

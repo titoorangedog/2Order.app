@@ -4,6 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import React, { useCallback } from 'react';
 import { Icon } from '@common/icon';
+import clsx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -32,6 +33,15 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     padding: theme.spacing(1, 1.5),
   },
+
+  menuSelectedContent: {
+    backgroundColor: theme.palette.card.background,
+  },
+
+  menuNotSelectedContent: {
+    backgroundColor: theme.palette.card.background,
+  },
+
   menuTitle: {
     gridArea: 'title',
     fontSize: '15px',
@@ -44,7 +54,7 @@ const useStyles = makeStyles(theme => ({
 
 export const MenuCard = props => {
   const classes = useStyles(props);
-  const { menu, onNavigateClick, onDeleteClick, isBusy } = props;
+  const { menu, isSelected, onNavigateClick, onDeleteClick, isBusy } = props;
 
   const handleClick = useCallback(() => {
     onNavigateClick(props.menu);
@@ -57,7 +67,12 @@ export const MenuCard = props => {
   return (
     <SpinnerContent show={isBusy}>
       <div className={classes.container}>
-        <div className={classes.menuContent}>
+        <div
+          className={clsx(classes.menuContent, {
+            [classes.menuNotSelectedContent]: isSelected,
+            [classes.menuSelectedContent]: !isSelected,
+          })}
+        >
           <div className={classes.menuTitle} onClick={!!handleClick && handleClick}>
             {menu.name}
           </div>

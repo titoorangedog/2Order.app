@@ -13,8 +13,6 @@ import { bindActionCreators } from 'redux';
 import * as actions from './redux/actions';
 import { selectGetClubMenus, selectIsGetBoardBusy } from './redux/selectors';
 import { i18n } from '@common/i18n-loader';
-import { SwipeableDeleteUndoComponent } from '@src/common/swipeableDeleteUndoComponent';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import QrReader from 'react-qr-reader';
 import SwipeableViews from 'react-swipeable-views';
 
@@ -97,23 +95,21 @@ export const BoardComponent = props => {
     <>
       {!!clubMenus && !!clubMenus.length ? (
         <div className={classes.container}>
-          <TransitionGroup className={classes.boardBuildings}>
+          <div className={classes.boardBuildings}>
             {clubMenus.map(b => (
-              <CSSTransition key={'menu-' + b.id} timeout={300} classNames="list">
-                <SwipeableDeleteUndoComponent key={'menu-' + b.id} threshold={50} menu={b}>
-                  <MenuCard
-                    menu={b}
-                    menuId={b.id}
-                    menuName={b.name}
-                    street={b.street}
-                    withHighlight={true}
-                    onNavigateClick={handleNavigateToView}
-                    onDeleteClick={handleNavigateToDelete}
-                  />
-                </SwipeableDeleteUndoComponent>
-              </CSSTransition>
+              <MenuCard
+                key={'menu-' + b.id}
+                menu={b}
+                menuId={b.id}
+                menuName={b.name}
+                street={b.street}
+                withHighlight={true}
+                onNavigateClick={handleNavigateToView}
+                onDeleteClick={handleNavigateToDelete}
+                isSelected={false}
+              />
             ))}
-          </TransitionGroup>
+          </div>
         </div>
       ) : (
         <div className={classes.container}>
@@ -135,18 +131,6 @@ export const BoardComponent = props => {
 
       <ActionBar>
         <ActionBarButton color="primary" label="add" icon="IconPlusSign" onClick={handleAddMenu} />
-        {/* <ActionBarMenuButton color="primary" label="menu" icon="IconMenu">
-          <ActionBarMenuItem icon="IconPlusSign" onClick={sharedModalNotImplementedShow}>
-            Add new Item
-          </ActionBarMenuItem>
-          <ActionBarMenuItem icon="IconCross" onClick={sharedModalNotImplementedShow}>
-            Remove Item
-          </ActionBarMenuItem>
-          <ActionBarMenuDivider />
-          <ActionBarMenuItem icon="IconInformation" onClick={handleRefreshBoard}>
-            Refresh board
-          </ActionBarMenuItem>
-        </ActionBarMenuButton> */}
       </ActionBar>
     </>
   );

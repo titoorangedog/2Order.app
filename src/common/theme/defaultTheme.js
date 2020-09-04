@@ -15,6 +15,7 @@ export const generalPalette = {
   common: {
     white: '#fff',
     black: '#000',
+    azure: '#ff5555',
   },
   error: {
     main: '#ff5555',
@@ -98,6 +99,7 @@ export const defaultPalette = mergeDeepRight(generalPalette, {
   },
   card: {
     background: generalPalette.common.white,
+    selectedBackground: generalPalette.common.white,
     color: generalPalette.common.black,
     border: generalPalette.primary.main,
     list: {

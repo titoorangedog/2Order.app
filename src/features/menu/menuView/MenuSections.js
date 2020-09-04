@@ -127,8 +127,13 @@ export const MenuSectionsComponent = props => {
 
   const handleNavigateToAddSection = useCallback(() => push(menuRoutes.menuNew), [push]);
 
-  const handleNavigateToComponentsView = useCallback(
-    () => push(menuRoutes.menuComponentsView.replace(':id', menu.id)),
+  const handleNavigateToEditMenu = useCallback(() => {
+    console.log('handleNavigateToEditMenu menu.id: ', menu.id);
+    push(menuRoutes.menuEdit.replace(':id', menu.id));
+  }, [menu.id, push]);
+
+  const handleNavigateToMenuView = useCallback(
+    () => push(menuRoutes.menuEdit.replace(':id', menu.id)),
     [push, menu],
   );
 
@@ -176,7 +181,7 @@ export const MenuSectionsComponent = props => {
                 <MenuViewSection
                   section={b}
                   key={'section-' + b.id}
-                  onEditSectionClick={handleNavigateToComponentsView}
+                  onEditSectionClick={handleNavigateToMenuView}
                   onDeleteSectionClick={handleDeleteSection}
                 ></MenuViewSection>
               ))}
@@ -194,6 +199,12 @@ export const MenuSectionsComponent = props => {
               label="add"
               icon="IconPlusSign"
               onClick={handleNavigateToAddSection}
+            />
+            <ActionBarButton
+              color="primary"
+              label="add"
+              icon="IconEdit2"
+              onClick={handleNavigateToEditMenu}
             />
           </ActionBar>
         </div>

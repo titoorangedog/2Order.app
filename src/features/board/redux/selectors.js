@@ -13,6 +13,13 @@ export const selectGetClubMenus = createSelector(selectGetBoard, board => {
   return board.clubMenus.menu;
 });
 
+export const selectGetSelectedId = createSelector(selectGetBoard, board => {
+  if (!board || !board.selectedId) {
+    return board.selectedId;
+  }
+  return 0;
+});
+
 export const selectUi = createSelector(selectBoard, state => state.ui);
 export const selectBusy = createSelector(selectUi, ui => ui.busy);
 export const selectIsGetBoardBusy = createSelector(selectBusy, busy => busy.getBoard);
