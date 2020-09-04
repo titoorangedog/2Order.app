@@ -18,6 +18,4 @@ export const MENU_CREATE_SECTION = '[Menu] Create Section';
 export const MENU_CREATE_SECTION_SUCCESS = '[Menu] Create Section Success';
 export const MENU_CREATE_SECTION_ERROR = '[Menu] Create Section Error';
 
-export const MENU_UPDATE_MENU = '[Menu] Update Menu';
-
 export const MENU_CHANGE_CURRENT = '[MENU] Change Current';

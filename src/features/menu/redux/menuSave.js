@@ -1,6 +1,6 @@
 import produce from 'immer';
 import { call, takeLatest, put } from 'redux-saga/effects';
-import { MENU_SAVE, MENU_SAVE_SUCCESS, MENU_SAVE_ERROR, MENU_UPDATE_MENU } from './constants';
+import { MENU_SAVE, MENU_SAVE_SUCCESS, MENU_SAVE_ERROR } from './constants';
 import { push } from 'connected-react-router';
 import { put as SavePut } from '@src/services/api';
 import { boardRoutes } from '@src/features/board/routes';
@@ -20,7 +20,7 @@ function* doMenuSave({ payload }) {
   try {
     yield call(SavePut, `clubs/1/menu`, payload);
     yield put({
-      type: MENU_UPDATE_MENU,
+      type: MENU_SAVE_SUCCESS,
     });
   } catch (error) {
     yield put({
