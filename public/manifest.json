@@ -1,80 +1,79 @@
 {
-  "short_name": "2Order",
-  "name": "2Order",
-  "lang": "en",
-  "description": "2Order",
-  "background_color": "#fbfbfb",
-  "theme_color": "#397ff7",
-  "dir": "ltr",
-  "display": "fullscreen",
-  "orientation": "any",
-  "start_url": ".",
-  "icons": [
-    {
-      "src": "/favicon_package/android-icon-192x192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "/favicon_package/apple-icon-180x180.png",
-      "type": "image/png",
-      "sizes": "180x180"
-    },
-    {
-      "src": "/favicon_package/apple-icon-152x152.png",
-      "type": "image/png",
-      "sizes": "152x152"
-    },
-    {
-      "src": "/favicon_package/apple-icon-144x144.png",
-      "type": "image/png",
-      "sizes": "144x144"
-    },
-    {
-      "src": "/favicon_package/apple-icon-120x120.png",
-      "type": "image/png",
-      "sizes": "120x120"
-    },
-    {
-      "src": "/favicon_package/apple-icon-114x114.png",
-      "type": "image/png",
-      "sizes": "114x114"
-    },
-    {
-      "src": "/favicon_package/favicon-96x96.png",
-      "type": "image/png",
-      "sizes": "96x96"
-    },
-    {
-      "src": "/favicon_package/apple-icon-76x76.png",
-      "type": "image/png",
-      "sizes": "76x76"
-    },
-    {
-      "src": "/favicon_package/apple-icon-72x72.png",
-      "type": "image/png",
-      "sizes": "72x72"
-    },
-    {
-      "src": "/favicon_package/apple-icon-60x60.png",
-      "type": "image/png",
-      "sizes": "60x60"
-    },
-    {
-      "src": "/favicon_package/apple-icon-57x57.png",
-      "type": "image/png",
-      "sizes": "57x57"
-    },
-    {
-      "src": "/favicon_package/favicon-32x32.png",
-      "type": "image/png",
-      "sizes": "32x32"
-    },
-    {
-      "src": "/favicon_package/favicon-16x16.png",
-      "type": "image/png",
-      "sizes": "16x16"
-    }
-  ],
-  "prefer_related_applications": "false"
+	"short_name": "2Order",
+	"name": "2Order",
+	"lang": "en",
+	"description": "2Order",
+	"background_color": "#fbfbfb",
+	"theme_color": "#397ff7",
+	"dir": "ltr",
+	"display": "fullscreen",
+	"orientation": "any",
+	"start_url": ".",
+	"icons": [
+		{
+			"src": "/favicon_package/android-icon-192x192.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "/favicon_package/apple-icon-180x180.png",
+			"type": "image/png",
+			"sizes": "180x180"
+		},
+		{
+			"src": "/favicon_package/apple-icon-152x152.png",
+			"type": "image/png",
+			"sizes": "152x152"
+		},
+		{
+			"src": "/favicon_package/apple-icon-144x144.png",
+			"type": "image/png",
+			"sizes": "144x144"
+		},
+		{
+			"src": "/favicon_package/apple-icon-120x120.png",
+			"type": "image/png",
+			"sizes": "120x120"
+		},
+		{
+			"src": "/favicon_package/apple-icon-114x114.png",
+			"type": "image/png",
+			"sizes": "114x114"
+		},
+		{
+			"src": "/favicon_package/favicon-96x96.png",
+			"type": "image/png",
+			"sizes": "96x96"
+		},
+		{
+			"src": "/favicon_package/apple-icon-76x76.png",
+			"type": "image/png",
+			"sizes": "76x76"
+		},
+		{
+			"src": "/favicon_package/apple-icon-72x72.png",
+			"type": "image/png",
+			"sizes": "72x72"
+		},
+		{
+			"src": "/favicon_package/apple-icon-60x60.png",
+			"type": "image/png",
+			"sizes": "60x60"
+		},
+		{
+			"src": "/favicon_package/apple-icon-57x57.png",
+			"type": "image/png",
+			"sizes": "57x57"
+		},
+		{
+			"src": "/favicon_package/favicon-32x32.png",
+			"type": "image/png",
+			"sizes": "32x32"
+		},
+		{
+			"src": "/favicon_package/favicon-16x16.png",
+			"type": "image/png",
+			"sizes": "16x16"
+		}
+	]
 }
