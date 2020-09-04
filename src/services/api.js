@@ -8,7 +8,7 @@ import { authGetToken, authIsAuthenticated } from './auth';
 import { extractErrorMessage } from './extractErrorMessage';
 
 const host = 'https://to-order.herokuapp.com/api/v1';
-// const baseURL = '/api/v1';
+const baseURL = '/api/v1';
 
 async function call(httpCall, mustBeAuthenticated) {
   let headers = {};
@@ -76,6 +76,10 @@ export async function get(controller, mustBeAuthenticated = true) {
     async headers => await Axios.get(`${host}/${controller}`, { headers }),
     mustBeAuthenticated,
   );
+}
+
+export async function getQrCode(controller) {
+  return await call(async headers => await Axios.get(`${baseURL}/${controller}`), false);
 }
 
 export async function downloadFile(controller, mustBeAuthenticated = true) {

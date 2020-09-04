@@ -1,6 +1,8 @@
 import watchNetworkStatus from '@common/watchNetworkStatus';
 import { Login } from '@features/auth/Login';
+import { QrCodeMenu } from '@features/qrCodeMenu/QrCodeMenu';
 import { authRoutes } from '@features/auth/routes';
+import { qrCodeMenuRoutes } from '@features/qrCodeMenu/routes';
 import { ModalDialog } from '@features/shared/ModalDialog';
 import { NotFound } from '@features/shared/NotFound';
 import * as sharedActions from '@features/shared/redux/actions';
@@ -49,6 +51,7 @@ function AppComponent(props) {
         <Redirect exact from="/" to={splashRoutes.splash} />
         <Route path={splashRoutes.splash} component={Splash} />
         <Route path={authRoutes.login} component={Login} />
+        <Route path={qrCodeMenuRoutes.qrCodeMenu} component={QrCodeMenu} />
         <Route path={privateRoutes.master} component={Master} />
         <Route path="*" component={NotFound} />
       </Switch>

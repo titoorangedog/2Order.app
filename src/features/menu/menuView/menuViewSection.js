@@ -115,7 +115,7 @@ export const MenuViewSection = props => {
       <div className={classes.sectionHeaderDetails}>
         <div className={classes.sectionHeaderTitle}>{section.name}</div>
         <div className={classes.sectionHeaderIcons}>
-          <div onClick={handleDeleteOnClick}>
+          {/* <div onClick={handleDeleteOnClick}>
             <Icon name="IconEdit2" paletteColor="swipeable.delete" size="20" />
           </div>
           <div onClick={handleDeleteOnClick}>
@@ -123,7 +123,7 @@ export const MenuViewSection = props => {
           </div>
           <div onClick={handleDeleteOnClick}>
             <Icon name="IconBin" paletteColor="swipeable.delete" size="20" />
-          </div>
+          </div> */}
         </div>
       </div>
       {!!section && !!section.items && section.items.length > 0 ? (

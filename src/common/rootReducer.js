@@ -8,6 +8,7 @@ import { authReducers } from '../features/auth/redux/reducers';
 import { boardReducers } from '../features/board/redux/reducers';
 import { menuReducers } from '../features/menu/redux/reducers';
 import { profileReducers } from '../features/profile/redux/reducers';
+import { qrCodeMenuReducers } from '../features/qrCodeMenu/redux/reducers';
 
 const basePersistConfig = {
   storage: localforage,
@@ -31,6 +32,7 @@ const reducerMap = {
   board: persistReducer(boardPersistConfig, boardReducers),
   menu: menuReducers,
   profile: profileReducers,
+  qrCodeMenu: qrCodeMenuReducers,
 };
 
 export const rootReducer = history =>

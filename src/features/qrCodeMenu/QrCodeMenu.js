@@ -1,22 +1,16 @@
-import { EmptyContent } from '@common/emptyContent';
-import * as actions from '@features/menu/redux/actions';
-import * as sharedActions from '@features/shared/redux/actions';
-// import { Trans } from '@lingui/macro';
 import { i18n } from '@common/i18n-loader';
+import * as sharedActions from '@features/shared/redux/actions';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import clsx from 'clsx';
 import { routerActions } from 'connected-react-router';
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { ActionBar } from '@features/shared/ActionBar';
-import { ActionBarButton } from '@features/shared/ActionBarButton';
-import { useCallback } from 'react';
-import { selectMenuIsBusy } from '@features/menu/redux/selectors';
-import { menuRoutes } from '@features/menu/routes';
+import * as actions from './redux/actions';
+import { selectCurrentQrCodeInfo, selectBusy, selectMenu } from './redux/selectors';
+import clsx from 'clsx';
 import { Spinner } from '@features/shared/Spinner';
-import { MenuViewSection } from './menuViewSection';
-import { Icon } from '@common/icon';
+import { EmptyContent } from '@common/emptyContent';
+import { MenuViewSection } from '@features/menu/menuView/menuViewSection.js';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -113,50 +107,15 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export const MenuSectionsComponent = props => {
-  const {
-    menu,
-    isBusy,
-    actions: { push, menuCreateSection, sharedModalActionsShow },
-  } = props;
+export const QrCodeMenuComponent = props => {
   const classes = useStyles(props);
-
-  const handleAddSection = useCallback(() => {
-    menuCreateSection();
-  }, [menuCreateSection]);
-
-  const handleNavigateToAddSection = useCallback(() => push(menuRoutes.menuNew), [push]);
-
-  const handleNavigateToEditMenu = useCallback(() => {
-    console.log('handleNavigateToEditMenu menu.id: ', menu.id);
-    push(menuRoutes.menuEdit.replace(':id', menu.id));
-  }, [menu.id, push]);
-
-  const handleNavigateToMenuView = useCallback(
-    () => push(menuRoutes.menuEdit.replace(':id', menu.id)),
-    [push, menu],
-  );
-
-  const handleDeleteSection = useCallback(() => {
-    sharedModalActionsShow({
-      icon: <Icon name="IconInformation" paletteColor="modal.default" size="28" />,
-      title: i18n._('Confirm the choice'),
-      message: i18n._('Do you want delete this section?'),
-      actions: [
-        {
-          icon: <Icon name="IconPlusSign" paletteColor="modal.default" />,
-          command: handleAddSection,
-        },
-      ],
-    });
-  }, [sharedModalActionsShow, handleAddSection]);
-
+  const { qrCodeInfo, isBusy, qrCodeMenu } = props;
   if (isBusy) {
     return <Spinner />;
   }
   return (
     <>
-      {!!menu || isBusy ? (
+      {!!qrCodeMenu || isBusy ? (
         <div className={classes.container}>
           <div className={classes.section}>
             <div className={clsx(classes.sectionHeaderInfo, classes.sectionHeaderCommon)}>
@@ -165,48 +124,23 @@ export const MenuSectionsComponent = props => {
             <div className={classes.sectionNameContent}>
               <div className={classes.sectionNameContainer}>
                 <div className={clsx(classes.sectionName, classes.sectionNameWithSubtitle)}>
-                  <div className={classes.sectionNameTitle}>
-                    {menu.id} - {menu.name}
-                  </div>
-                  <div className={classes.sectionNameSubtitle}>
-                    {i18n._('Start time')} {!!menu.startTime && menu.startTime}
-                  </div>
+                  <div className={classes.sectionNameTitle}>{qrCodeMenu.name}</div>
                 </div>
               </div>
             </div>
           </div>
-          {!!menu && !!menu.sections && menu.sections.length > 0 ? (
+          {!!qrCodeMenu && !!qrCodeMenu.sections && qrCodeMenu.sections.length > 0 ? (
             <div>
-              {menu.sections.map(b => (
-                <MenuViewSection
-                  section={b}
-                  key={'section-' + b.id}
-                  onEditSectionClick={handleNavigateToMenuView}
-                  onDeleteSectionClick={handleDeleteSection}
-                ></MenuViewSection>
+              {qrCodeMenu.sections.map(b => (
+                <MenuViewSection section={b} key={'section-' + b.id}></MenuViewSection>
               ))}
             </div>
           ) : (
             <EmptyContent
-              locale={i18n._('Menu empty. Please create a section.')}
+              locale={i18n._('Menu empty, please wait, working progress')}
               responsive
             ></EmptyContent>
           )}
-
-          <ActionBar position="absolute">
-            <ActionBarButton
-              color="primary"
-              label="add"
-              icon="IconPlusSign"
-              onClick={handleNavigateToAddSection}
-            />
-            <ActionBarButton
-              color="primary"
-              label="add"
-              icon="IconEdit2"
-              onClick={handleNavigateToEditMenu}
-            />
-          </ActionBar>
         </div>
       ) : (
         <EmptyContent locale={i18n._(`Menu doesn't exist`)} responsive></EmptyContent>
@@ -218,10 +152,11 @@ export const MenuSectionsComponent = props => {
 /* istanbul ignore next */
 function mapStateToProps(state) {
   return {
-    isBusy: selectMenuIsBusy(state),
+    qrCodeMenu: selectMenu(state),
+    qrCodeInfo: selectCurrentQrCodeInfo(state),
+    isBusy: selectBusy(state),
   };
 }
-
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
   return {
@@ -229,4 +164,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export const MenuSections = connect(mapStateToProps, mapDispatchToProps)(MenuSectionsComponent);
+export const QrCodeMenu = connect(mapStateToProps, mapDispatchToProps)(QrCodeMenuComponent);

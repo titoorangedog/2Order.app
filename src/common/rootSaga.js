@@ -5,8 +5,16 @@ import * as authSagas from '../features/auth/redux/sagas';
 import * as boardSagas from '../features/board/redux/sagas';
 import * as menuSagas from '../features/menu/redux/sagas';
 import * as profileSagas from '../features/profile/redux/sagas';
+import * as qrCodeMenuSagas from '../features/qrCodeMenu/redux/sagas';
 
-export const featureSagas = [authSagas, sharedSagas, boardSagas, menuSagas, profileSagas];
+export const featureSagas = [
+  authSagas,
+  sharedSagas,
+  boardSagas,
+  menuSagas,
+  profileSagas,
+  qrCodeMenuSagas,
+];
 
 const sagas = map(module => values(module), featureSagas);
 
