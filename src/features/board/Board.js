@@ -51,7 +51,7 @@ export const BoardComponent = props => {
   const {
     clubMenus,
     isGetBoardBusy,
-    actions: { push, boardGetClubMenus },
+    actions: { push },
   } = props;
 
   const handleNavigateToView = useCallback(
@@ -83,10 +83,6 @@ export const BoardComponent = props => {
     },
     [push],
   );
-
-  const handleRefreshBoard = useCallback(() => {
-    boardGetClubMenus();
-  }, [boardGetClubMenus]);
 
   if (isGetBoardBusy) {
     return <Spinner />;

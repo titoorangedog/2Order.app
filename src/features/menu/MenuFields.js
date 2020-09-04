@@ -1,17 +1,10 @@
 import { MenuVoice } from '@src/common/menuVoice';
 import { InputField } from '@common/inputField';
-import { boardRoutes } from '@features/board/routes';
-import * as sharedActions from '@features/shared/redux/actions';
 import { i18n } from '@common/i18n-loader';
 import Button from '@material-ui/core/Button';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import { routerActions } from 'connected-react-router';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import useForm from 'react-hook-form';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as actions from './redux/actions';
-import { selectMenuIsBusy } from './redux/selectors';
 import { ButtonSpinner } from '@features/shared/ButtonSpinner';
 import { KeyboardTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';

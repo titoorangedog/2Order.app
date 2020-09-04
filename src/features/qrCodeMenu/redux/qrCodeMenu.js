@@ -1,4 +1,3 @@
-import { push } from 'connected-react-router';
 import produce from 'immer';
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { QRCODE_GET_MENU, QRCODE_GET_MENU_ERROR, QRCODE_GET_MENU_SUCCESS } from './constants';

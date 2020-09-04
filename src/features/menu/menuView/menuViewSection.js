@@ -5,7 +5,6 @@ import { i18n } from '@common/i18n-loader';
 import React from 'react';
 import clsx from 'clsx';
 import { useCallback } from 'react';
-import { Icon } from '@common/icon';
 
 const useStyles = makeStyles(theme => ({
   sectionHeaderDetails: {
@@ -96,19 +95,19 @@ const useStyles = makeStyles(theme => ({
 
 export const MenuViewSection = props => {
   const classes = useStyles(props);
-  const { section, onEditSectionClick, onDeleteSectionClick } = props;
+  const { section, onEditSectionClick } = props;
 
   const handleEditOnClick = useCallback(() => {
     onEditSectionClick();
   }, [onEditSectionClick]);
 
-  const handleDeleteOnClick = useCallback(
-    event => {
-      console.log('handleDeleteOnClick:', event.target.value);
-      onDeleteSectionClick();
-    },
-    [onDeleteSectionClick],
-  );
+  // const handleDeleteOnClick = useCallback(
+  //   event => {
+  //     console.log('handleDeleteOnClick:', event.target.value);
+  //     onDeleteSectionClick();
+  //   },
+  //   [onDeleteSectionClick],
+  // );
 
   return (
     <div>

@@ -2,12 +2,11 @@ import { i18n } from '@common/i18n-loader';
 import * as sharedActions from '@features/shared/redux/actions';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { routerActions } from 'connected-react-router';
-import React, { useCallback, useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from './redux/actions';
 import { selectCurrentQrCodeInfo, selectBusy, selectMenu } from './redux/selectors';
-import clsx from 'clsx';
 import { Spinner } from '@features/shared/Spinner';
 import { EmptyContent } from '@common/emptyContent';
 import { MenuViewSection } from '@features/menu/menuView/menuViewSection.js';
@@ -120,7 +119,7 @@ const useStyles = makeStyles(theme => ({
 
 export const QrCodeMenuComponent = props => {
   const classes = useStyles(props);
-  const { qrCodeInfo, isBusy, qrCodeMenu } = props;
+  const { isBusy, qrCodeMenu } = props;
   if (isBusy) {
     return <Spinner />;
   }
