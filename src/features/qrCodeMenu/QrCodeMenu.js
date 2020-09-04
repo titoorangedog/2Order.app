@@ -11,15 +11,26 @@ import clsx from 'clsx';
 import { Spinner } from '@features/shared/Spinner';
 import { EmptyContent } from '@common/emptyContent';
 import { MenuViewSection } from '@features/menu/menuView/menuViewSection.js';
+import logo from '@src/images/YourLogoHere.png';
 
 const useStyles = makeStyles(theme => ({
   container: {
     height: '100%',
     display: 'grid',
-    gridAutoRows: 'min-content',
+    gridTemplateColumns: '1fr',
+    gridTemplateRows: 'min-content max-content',
+    gridTemplateAreas: '"logo" "sections"',
     gridRowGap: theme.spacing(2),
     padding: theme.spacing(0, 3),
-    position: 'relative',
+  },
+  logoContainer: {
+    gridArea: 'logo',
+    alignSelf: 'center',
+    justifySelf: 'center',
+    background: theme.palette.card.background,
+  },
+  sectionContainer: {
+    gridArea: 'sections',
   },
   section: {
     display: 'grid',
@@ -117,30 +128,23 @@ export const QrCodeMenuComponent = props => {
     <>
       {!!qrCodeMenu || isBusy ? (
         <div className={classes.container}>
-          <div className={classes.section}>
-            <div className={clsx(classes.sectionHeaderInfo, classes.sectionHeaderCommon)}>
-              <div className={classes.sectionHeaderTitle}>{i18n._('Menu Info')}</div>
-            </div>
-            <div className={classes.sectionNameContent}>
-              <div className={classes.sectionNameContainer}>
-                <div className={clsx(classes.sectionName, classes.sectionNameWithSubtitle)}>
-                  <div className={classes.sectionNameTitle}>{qrCodeMenu.name}</div>
-                </div>
-              </div>
-            </div>
+          <div className={classes.logoContainer}>
+            <img className={classes.logo} src={logo} alt="logo" />
           </div>
-          {!!qrCodeMenu && !!qrCodeMenu.sections && qrCodeMenu.sections.length > 0 ? (
-            <div>
-              {qrCodeMenu.sections.map(b => (
-                <MenuViewSection section={b} key={'section-' + b.id}></MenuViewSection>
-              ))}
-            </div>
-          ) : (
-            <EmptyContent
-              locale={i18n._('Menu empty, please wait, working progress')}
-              responsive
-            ></EmptyContent>
-          )}
+          <div className={classes.sectionContainer}>
+            {!!qrCodeMenu && !!qrCodeMenu.sections && qrCodeMenu.sections.length > 0 ? (
+              <div>
+                {qrCodeMenu.sections.map(b => (
+                  <MenuViewSection section={b} key={'section-' + b.id}></MenuViewSection>
+                ))}
+              </div>
+            ) : (
+              <EmptyContent
+                locale={i18n._('Menu empty, please wait, working progress')}
+                responsive
+              ></EmptyContent>
+            )}
+          </div>
         </div>
       ) : (
         <EmptyContent locale={i18n._(`Menu doesn't exist`)} responsive></EmptyContent>
