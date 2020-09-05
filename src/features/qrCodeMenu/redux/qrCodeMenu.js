@@ -15,8 +15,8 @@ export function qrCodeMenu() {
 
 function* doQrCodeMenu() {
   try {
-    const params = yield select(selectCurrentQrCodeUrlParams);
-    const menu = yield call(getQrCode, `clubs/${params.idClub}/tables/${params.idMenu}`);
+    const menu = null; //yield call(getQrCode, `clubs/${params.idClub}/tables/${params.idMenu}`);
+
     yield put({
       type: QRCODE_GET_MENU_SUCCESS,
       payload: menu,
