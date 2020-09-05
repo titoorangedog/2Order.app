@@ -59,18 +59,24 @@ export const LoginForm = props => {
 
   const [internalUsername, setInternalUsername] = useState('');
   const [internalPassword, setInternalPassword] = useState('');
-  const handleUsernameChange = useCallback(event => setInternalUsername(event.target.value), [
-    setInternalUsername,
-  ]);
-  const handlePasswordChange = useCallback(event => setInternalPassword(event.target.value), [
-    setInternalPassword,
-  ]);
 
-  const handleLogin = useCallback(() => onLogin(internalUsername, internalPassword), [
-    onLogin,
-    internalUsername,
-    internalPassword,
-  ]);
+  const handleUsernameChange = useCallback(e => {
+    setInternalUsername(e.target.value);
+  }, []);
+
+  const handlePasswordChange = useCallback(e => {
+    setInternalPassword(e.target.value);
+  }, []);
+
+  // ]);
+
+  const handleLogin = useCallback(
+    e => {
+      onLogin(internalUsername, internalPassword);
+    },
+    [internalPassword, internalUsername, onLogin],
+  );
+
   const handleSignUp = useCallback(() => onSignUp(), [onSignUp]);
 
   const validationScheme = useMemo(

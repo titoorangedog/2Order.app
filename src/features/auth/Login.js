@@ -89,12 +89,16 @@ export const LoginComponent = props => {
     [sharedModalShow],
   );
 
-  const handleLogin = useCallback((username, password) => authLogin(username, password), [
-    authLogin,
-  ]);
-  // const handleSelectCustomer = useCallback(customer => authSelectCustomer(customer), [
-  //   authSelectCustomer,
-  // ]);
+  const handleLogin = useCallback(
+    (username, password) => {
+      console.log('handleLogin username', username);
+      console.log('handleLogin password', password);
+
+      authLogin(username, password);
+    },
+    [authLogin],
+  );
+
   const handleStepChange = useCallback(
     (index, indexLatest, meta) => {
       authSetStep(index);

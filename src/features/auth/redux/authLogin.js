@@ -2,24 +2,21 @@ import { boardRoutes } from '@features/board/routes';
 import { setSession } from '@services/auth';
 import { push } from 'connected-react-router';
 import produce from 'immer';
-import { call, put, select, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import { authReset } from './authReset';
 import { AUTH_LOGIN, AUTH_LOGIN_ERROR, AUTH_LOGIN_SUCCESS } from './constants';
-import { selectPassword, selectUsername } from './selectors';
 import { login } from '@services/api';
-export function authLogin() {
+
+export function authLogin(username, password) {
   return {
     type: AUTH_LOGIN,
+    payload: { username, password },
   };
 }
 
-function* doLogin() {
-  const username = yield select(selectUsername);
-  const password = yield select(selectPassword);
-
+function* doLogin({ payload }) {
   try {
-    const result = yield call(login, username, password);
-    console.log('doLogin result', result);
+    const result = yield call(login, payload.username, payload.password);
     yield setSession(result);
 
     yield put({
@@ -57,7 +54,6 @@ export const reducer = (state, action) =>
       case AUTH_LOGIN_ERROR:
         draft.ui.busy.login = false;
         draft.isLoggedIn = false;
-
         break;
       default:
         return state;
