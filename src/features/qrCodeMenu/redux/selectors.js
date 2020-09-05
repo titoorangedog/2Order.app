@@ -9,7 +9,7 @@ export const selectIsQrCodeMenuRoute = createSelector(
   createMatchSelector({ path: qrCodeMenuRoutes.qrCodeMenu }),
 );
 
-export const selectCurrentQrCodeInfo = createSelector(
+export const selectCurrentQrCodeUrlParams = createSelector(
   selectIsQrCodeMenuRoute,
   isQrCodeMenuRoute => {
     if (!!isQrCodeMenuRoute) {

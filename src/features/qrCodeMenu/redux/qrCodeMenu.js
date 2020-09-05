@@ -5,6 +5,7 @@ import { LOCATION_CHANGE } from 'connected-react-router';
 import { selectMatchUrlPath } from '@features/shared/redux/selectors';
 import { qrCodeMenuRoutes } from '../routes';
 import { getQrCode } from '@services/api';
+import { selectCurrentQrCodeUrlParams } from './selectors';
 
 export function qrCodeMenu() {
   return {
@@ -14,7 +15,8 @@ export function qrCodeMenu() {
 
 function* doQrCodeMenu() {
   try {
-    const menu = yield call(getQrCode, 'clubs/1/tables/1');
+    const params = yield select(selectCurrentQrCodeUrlParams);
+    const menu = yield call(getQrCode, `clubs/${params.idClub}/tables/${params.idMenu}`);
     yield put({
       type: QRCODE_GET_MENU_SUCCESS,
       payload: menu,
@@ -26,6 +28,7 @@ function* doQrCodeMenu() {
     });
   }
 }
+
 function* doQrCodeMenuOnOtherActions() {
   const isRouteQrCodeMenu = yield select(selectMatchUrlPath(qrCodeMenuRoutes.qrCodeMenu));
   if (isRouteQrCodeMenu) {

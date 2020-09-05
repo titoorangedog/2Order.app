@@ -56,8 +56,15 @@ export const selectCurrentMenuInfo = createSelector(
   },
 );
 
+export const selectCurrentMenuUrlParams = createSelector(selectIsMenuViewRoute, isMenuViewRoute => {
+  if (!!isMenuViewRoute) {
+    return isMenuViewRoute.params;
+  }
+
+  return null;
+});
+
 export const selectCurrentMenu = createSelector(selectMenu, state => {
-  console.log('selectCurrentMenu state', state);
   if (!state || !state.menu) {
     return [];
   }

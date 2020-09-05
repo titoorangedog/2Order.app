@@ -6,7 +6,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from './redux/actions';
-import { selectCurrentQrCodeInfo, selectBusy, selectMenu } from './redux/selectors';
+import { selectBusy, selectMenu } from './redux/selectors';
 import { Spinner } from '@features/shared/Spinner';
 import { EmptyContent } from '@common/emptyContent';
 import { MenuViewSection } from '@features/menu/menuView/menuViewSection.js';
@@ -156,7 +156,6 @@ export const QrCodeMenuComponent = props => {
 function mapStateToProps(state) {
   return {
     qrCodeMenu: selectMenu(state),
-    qrCodeInfo: selectCurrentQrCodeInfo(state),
     isBusy: selectBusy(state),
   };
 }

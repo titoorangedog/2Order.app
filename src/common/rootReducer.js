@@ -26,13 +26,25 @@ const boardPersistConfig = {
   whitelist: ['clubMenus'],
 };
 
+const menuPersistConfig = {
+  ...basePersistConfig,
+  key: 'menu',
+  whitelist: ['menu'],
+};
+
+const qrCodemenuPersistConfig = {
+  ...basePersistConfig,
+  key: 'qrCodeMenu',
+  whitelist: ['qrCodeMenu'],
+};
+
 const reducerMap = {
   shared: persistReducer(sharedPersistConfig, sharedReducers),
   auth: authReducers,
   board: persistReducer(boardPersistConfig, boardReducers),
-  menu: menuReducers,
+  menu: persistReducer(menuPersistConfig, menuReducers),
   profile: profileReducers,
-  qrCodeMenu: qrCodeMenuReducers,
+  qrCodeMenu: persistReducer(qrCodemenuPersistConfig, qrCodeMenuReducers),
 };
 
 export const rootReducer = history =>

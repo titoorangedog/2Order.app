@@ -1,6 +1,6 @@
 import produce from 'immer';
 import { call, select, put, takeLatest } from 'redux-saga/effects';
-import { selectIsMenuViewRoute, selectCurrentMenuInfo } from './selectors';
+import { selectIsMenuViewRoute, selectCurrentMenuUrlParams } from './selectors';
 import { LOCATION_CHANGE } from 'connected-react-router';
 import {
   MENU_GET_MENU,
@@ -24,11 +24,10 @@ function* doMenuGetMenuOnOtherActions() {
 }
 
 function* doMenuGetMenu() {
-  const currentMenu = yield select(selectCurrentMenuInfo);
-
-  if (!!currentMenu) {
+  const params = yield select(selectCurrentMenuUrlParams);
+  if (!!params) {
     try {
-      const menu = yield call(get, `clubs/1/menu/${currentMenu.id}`);
+      const menu = yield call(get, `clubs/1/menu/${params.id}`);
       if (!!menu) {
         yield put({
           type: MENU_GET_MENU_SUCCESS,

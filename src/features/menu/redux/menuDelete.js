@@ -2,9 +2,9 @@ import produce from 'immer';
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { MENU_DELETE, MENU_DELETE_SUCCESS, MENU_DELETE_ERROR } from './constants';
 import { push } from 'connected-react-router';
-import { deleteById } from '@src/services/api';
+import { deleteById, get } from '@src/services/api';
 import { boardRoutes } from '@src/features/board/routes';
-import { selectCurrentMenuInfo } from './selectors';
+import { selectCurrentMenuInfo, selectCurrentMenuUrlParams } from './selectors';
 
 export function menuDelete(menuName) {
   return {
@@ -19,9 +19,13 @@ export function* doRedirectOnMenuDelete() {
 
 function* doMenuDelete({ payload: menuName }) {
   try {
-    const currentMenu = yield select(selectCurrentMenuInfo);
-    console.log('payload: ', menuName);
-    console.log('currentMenu: ', currentMenu);
+    let currentMenu = yield select(selectCurrentMenuInfo);
+
+    if (!!currentMenu) {
+      const params = yield select(selectCurrentMenuUrlParams);
+      currentMenu = yield call(get, `clubs/1/menu/${params.id}`);
+    }
+
     if (!!currentMenu) {
       if (currentMenu.name === menuName) {
         yield call(deleteById, `clubs/1/menu`, currentMenu.id);
